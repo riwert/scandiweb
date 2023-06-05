@@ -1,0 +1,13 @@
+# ignore composer dependency directories
+vendor/
+
+# ignore node dependency directories
+node_modules/
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+.env
+.DS_Store
