@@ -21,6 +21,11 @@ class DvdProduct extends Product
         $this->setSize($data['size']);
     }
 
+    public function save($productService)
+    {
+        $productService->saveDvdProduct($this);
+    }
+
     public function getSize()
     {
         return $this->size;

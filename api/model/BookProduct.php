@@ -21,6 +21,11 @@ class BookProduct extends Product
         $this->setWeight($data['weight']);
     }
 
+    public function save($productService)
+    {
+        $productService->saveBookProduct($this);
+    }
+
     public function getWeight()
     {
         return $this->weight;

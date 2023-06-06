@@ -25,42 +25,52 @@ class FurnitureProduct extends Product
         $this->setWidth($data['width']);
     }
 
+    public function save($productService)
+    {
+        $productService->saveFurnitureProduct($this);
+    }
+
     public function getHeight()
     {
         return $this->height;
     }
+
     public function getLength()
     {
         return $this->length;
     }
+
     public function getWidth()
     {
         return $this->width;
     }
 
     /**
-     * @param mixed $length 
+     * @param mixed $length
      * @return self
      */
-    public function setHeight($height): self {
+    public function setHeight($height): self
+    {
         $this->height = str_replace(',', '.', $height);
         return $this;
     }
 
     /**
-     * @param mixed $length 
+     * @param mixed $length
      * @return self
      */
-    public function setLength($length): self {
+    public function setLength($length): self
+    {
         $this->length = str_replace(',', '.', $length);
         return $this;
     }
 
     /**
-     * @param mixed $width 
+     * @param mixed $width
      * @return self
      */
-    public function setWidth($width): self {
+    public function setWidth($width): self
+    {
         $this->width = str_replace(',', '.', $width);
         return $this;
     }

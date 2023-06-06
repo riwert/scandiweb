@@ -4,12 +4,9 @@ namespace RAPI\service;
 
 use PDO;
 use PDOException;
+use Exception;
 use RAPI\config\Database;
 use RAPI\config\Response;
-use RAPI\model\Product;
-use RAPI\model\DvdProduct;
-use RAPI\model\BookProduct;
-use RAPI\model\FurnitureProduct;
 
 class ProductService
 {
@@ -22,20 +19,12 @@ class ProductService
         $this->pdo = $this->database->getConnection();
     }
 
-    public function saveProduct(Product $product)
-    {
-        if ($product instanceof DvdProduct) {
-            return $this->saveDvdProduct($product);
-        } elseif ($product instanceof BookProduct) {
-            return $this->saveBookProduct($product);
-        } elseif ($product instanceof FurnitureProduct) {
-            return $this->saveFurnitureProduct($product);
-        }
-    }
-
     public function saveDvdProduct($product)
     {
         try {
+            if (!isset($product)) {
+                throw new Exception('Invalid data', 400);
+            }
             $stmt = $this->pdo->prepare('INSERT INTO products
                     (sku, name, price, productType, size)
                 VALUES
@@ -53,8 +42,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product added'], 400);
             }
-        } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
+        } catch (PDOException | Exception $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -62,6 +50,9 @@ class ProductService
     public function saveBookProduct($product)
     {
         try {
+            if (!isset($product)) {
+                throw new Exception('Invalid data', 400);
+            }
             $stmt = $this->pdo->prepare('INSERT INTO products
                     (sku, name, price, productType, weight)
                 VALUES
@@ -79,8 +70,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product added'], 400);
             }
-        } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
+        } catch (PDOException | Exception $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -88,6 +78,9 @@ class ProductService
     public function saveFurnitureProduct($product)
     {
         try {
+            if (!isset($product)) {
+                throw new Exception('Invalid data', 400);
+            }
             $stmt = $this->pdo->prepare('INSERT INTO products
                     (sku, name, price, productType, height, length, width)
                 VALUES
@@ -107,23 +100,24 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product added'], 400);
             }
-        } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
+        } catch (PDOException | Exception $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
 
-    public function getProductBySku($sku)
+    public function fetchProductBySku($sku)
     {
         try {
+            if (!isset($sku)) {
+                throw new Exception('Invalid data', 400);
+            }
             $stmt = $this->pdo->prepare('SELECT * FROM products WHERE sku=:sku LIMIT 1');
             $stmt->bindValue(':sku', $sku);
             $stmt->execute();
             $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $product;
-        } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
+        } catch (PDOException | Exception $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -131,6 +125,9 @@ class ProductService
     public function deleteProductBySku($sku)
     {
         try {
+            if (!isset($sku)) {
+                throw new Exception('Invalid data', 400);
+            }
             $stmt = $this->pdo->prepare('DELETE FROM products WHERE sku=:sku LIMIT 1');
             $stmt->bindValue(':sku', $sku);
             $stmt->execute();
@@ -140,8 +137,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product deleted'], 400);
             }
-        } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
+        } catch (PDOException | Exception $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -149,6 +145,9 @@ class ProductService
     public function massDeleteProductsBySkus($skus)
     {
         try {
+            if (!isset($skus)) {
+                throw new Exception('Invalid data', 400);
+            }
             // Extract comma separated skus from parameter
             $skus = explode(',', $skus);
 
@@ -174,8 +173,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No products deleted'], 400);
             }
-        } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
+        } catch (PDOException | Exception $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -188,7 +186,6 @@ class ProductService
 
             return $products;
         } catch (PDOException $e) {
-            // Handle the exception, log the error, etc.
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }

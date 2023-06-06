@@ -9,17 +9,21 @@ use InvalidArgumentException;
 
 class ProductFactory
 {
+    private static $productTypes = [
+        'dvd' => DvdProduct::class,
+        'book' => BookProduct::class,
+        'furniture' => FurnitureProduct::class
+    ];
+
     public static function createProduct($data)
     {
-        switch ($data['productType']) {
-            case 'dvd':
-                return new DvdProduct($data);
-            case 'book':
-                return new BookProduct($data);
-            case 'furniture':
-                return new FurnitureProduct($data);
-            default:
-                throw new InvalidArgumentException('Invalid product type');
+        $type = $data['productType'];
+
+        if (!array_key_exists($type, self::$productTypes)) {
+            throw new InvalidArgumentException('Invalid product type');
         }
+
+        $productClass = self::$productTypes[$type];
+        return new $productClass($data);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace RAPI\model;
 
+use RAPI\service\ProductService;
 use Exception;
 
 abstract class Product
@@ -23,6 +24,8 @@ abstract class Product
         $this->setPrice($data['price']);
         $this->setProductType($data['productType']);
     }
+
+    abstract public function save(ProductService $productService);
 
     public function getSku()
     {

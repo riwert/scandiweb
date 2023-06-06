@@ -26,6 +26,7 @@ class Router
     {
         $this->routes[$method][$path] = $handler;
     }
+
     public function handleRequest()
     {
         if (isset($this->routes[$this->requestMethod])) {

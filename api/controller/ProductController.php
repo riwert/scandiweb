@@ -16,6 +16,7 @@ class ProductController
     {
         $this->productService = $productService;
     }
+
     public function productList()
     {
         // Retrieve all products using the ProductService
@@ -31,45 +32,30 @@ class ProductController
             $product = ProductFactory::createProduct($data);
 
             // Save the product using the ProductService
-            if ($this->productService->saveProduct($product)) {
-                return Response::handle(['success' => 'Product saved successfully'], 201);
-            }
+            $product->save($this->productService);
 
         } catch (PDOException | Exception $e) {
-            // Handle the exception, log the error, etc.
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
 
     public function getProduct($sku)
     {
-        if (!isset($sku)) {
-            return Response::handle(['error' => 'Invalid data'], 400);
-        }
-
         // Retrieve all products using the ProductService
-        $product = $this->productService->getProductBySku($sku);
+        $product = $this->productService->fetchProductBySku($sku);
 
         return $product;
     }
 
     public function deleteProduct($sku)
     {
-        if (!isset($sku)) {
-            return Response::handle(['error' => 'Invalid data'], 400);
-        }
-
-        // Retrieve all products using the ProductService
+        // Delete product using the ProductService
         $this->productService->deleteProductBySku($sku);
     }
 
     public function massDeleteProduct($skus)
     {
-        if (!isset($skus)) {
-            return Response::handle(['error' => 'Invalid data'], 400);
-        }
-
-        // Retrieve all products using the ProductService
+        // Delete all products using the ProductService
         $this->productService->massDeleteProductsBySkus($skus);
     }
 }
