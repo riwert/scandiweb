@@ -4,4 +4,8 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: 'page', mode: 'out-in' }
   },
+  css: [
+    '~/assets/scss/styles.scss',
+  ],
+  modules: ['@nuxtjs/tailwindcss'],
 })
