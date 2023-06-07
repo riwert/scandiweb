@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SfSelect, SfInput, SfButton } from '@storefront-ui/vue'
+
 const apiUrl = 'http://localhost/scandiweb/api'
 const addProduct = async () => {
   try {
@@ -22,11 +24,10 @@ const newProduct = reactive({
   weight: '',
   height: '',
   width: '',
-  lenght: '',
+  length: '',
 })
 
 const handleSubmit = async () => {
-  console.log(toRaw(newProduct.value))
   const product = await addProduct()
   if (!product) {
     console.log(product)
@@ -41,39 +42,68 @@ const handleSubmit = async () => {
 <template>
   <form id="product_form" class="product" @submit.prevent="handleSubmit">
     <div class="product__header">
-      <h1>Product Add</h1>
-      <div class="product__actions">
-        <button type="button" @click="useNavTo('/')">
+      <h1 class="typography-headline-2 my-2 font-bold">Product Add</h1>
+      <div class="product__actions my-2">
+        <SfButton type="button" @click="useNavTo('/')">
           Cancel
-        </button>
-        <button type="submit">
+        </SfButton>
+        <SfButton type="submit">
           Save
-        </button>
+        </SfButton>
       </div>
     </div>
     <hr>
-    <div class="product__container">
+    <div class="product__container p-4 flex gap-4 flex-wrap text-neutral-900">
 
-        <input type="text" id="sku" v-model="newProduct.sku" class="product__input" placeholder="SKU" />
-        <input type="text" id="name" v-model="newProduct.name" class="product__input" placeholder="Name" />
-        <input type="number" min="0" step=".01" id="price" v-model="newProduct.price" class="product__input" placeholder="Price" />
-        <select v-model="newProduct.productType">
-          <option value="" disabled>Choose product type</option>
+      <label class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">SKU</span>
+        <SfInput type="text" id="sku" v-model="newProduct.sku" class="product__input" placeholder="SKU" required />
+      </label>
+
+      <label class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Name</span>
+        <SfInput type="text" id="name" v-model="newProduct.name" class="product__input" placeholder="Name" required />
+      </label>
+
+      <label class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Price</span>
+        <SfInput type="number" min="0" step=".01" id="price" v-model="newProduct.price" class="product__input" placeholder="Price" required />
+      </label>
+
+      <label class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Product type</span>
+        <SfSelect v-model="newProduct.productType" placeholder="Choose product type" required>
           <option value="dvd">DVD</option>
           <option value="book">Book</option>
           <option value="furniture">Furniture</option>
-        </select>
-        <div v-if="newProduct.productType == 'dvd'">
-          <input type="number" min="0" step=".01" id="size" v-model="newProduct.size" class="product__input" placeholder="Size" />
-        </div>
-        <div v-if="newProduct.productType == 'book'">
-          <input type="number" min="0" step=".01" id="weight" v-model="newProduct.weight" class="product__input" placeholder="Weight" />
-        </div>
-        <div v-if="newProduct.productType == 'furniture'">
-          <input type="number" min="0" step=".01" id="height" v-model="newProduct.height" class="product__input" placeholder="Height" />
-          <input type="number" min="0" step=".01" id="width" v-model="newProduct.width" class="product__input" placeholder="Width" />
-          <input type="number" min="0" step=".01" id="lenght" v-model="newProduct.lenght" class="product__input" placeholder="Lenght" />
-        </div>
+        </SfSelect>
+      </label>
+
+      <label v-if="newProduct.productType == 'dvd'" class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Size</span>
+        <SfInput type="number" min="0" step=".01" id="size" v-model="newProduct.size" class="product__input" placeholder="Size" required />
+      </label>
+
+      <label v-if="newProduct.productType == 'book'" class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Weight</span>
+        <SfInput type="number" min="0" step=".01" id="weight" v-model="newProduct.weight" class="product__input" placeholder="Weight" required />
+      </label>
+
+      <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Height</span>
+        <SfInput type="number" min="0" step=".01" id="height" v-model="newProduct.height" class="product__input" placeholder="Height" required />
+      </label>
+
+      <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Width</span>
+        <SfInput type="number" min="0" step=".01" id="width" v-model="newProduct.width" class="product__input" placeholder="Width" required />
+      </label>
+
+      <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
+        <span class="typography-text-sm font-medium">Lenght</span>
+        <SfInput type="number" min="0" step=".01" id="lenght" v-model="newProduct.length" class="product__input" placeholder="Lenght" required />
+        <!-- id with typo lenght instead length to match with spec for testing -->
+      </label>
 
     </div>
   </form>
@@ -83,6 +113,7 @@ const handleSubmit = async () => {
 .product {
 
   &__header {
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { SfButton, SfCheckbox, SfLink } from '@storefront-ui/vue'
+
 const apiUrl = 'http://localhost/scandiweb/api'
 const getProducts = async () => {
   try {
@@ -43,26 +45,31 @@ const handleSubmit = async () => {
 <template>
   <form class="products" @submit.prevent="handleSubmit">
     <div class="products__header">
-      <h1>Product List</h1>
-      <div class="products__actions">
-        <button type="button" @click="useNavTo('/product/new')">
+      <h1 class="typography-headline-2 my-2 font-bold">Product List</h1>
+      <div class="products__actions my-2">
+        <SfButton type="button" class="" @click="useNavTo('/product/new')">
           ADD
-        </button>
-        <button type="submit">
+        </SfButton>
+        <SfButton type="submit" class="">
           MASS DELETE
-        </button>
+        </SfButton>
       </div>
     </div>
     <hr>
     <div class="products__container">
       <div v-for="product in products" :key="product.id" class="products__item">
-        <input type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox" />
-        <p>{{ product.sku }}</p>
-        <p>{{ product.name }}</p>
-        <p>${{ product.price }}</p>
-        <p v-if="product.productType == 'dvd'">Size: {{ product.size }} MB</p>
-        <p v-if="product.productType == 'book'">Weight: {{ product.size }} kg</p>
-        <p v-if="product.productType == 'furniture'">Dimensions: {{ product.height }}x{{ product.width }}x{{ product.length }} cm</p>
+        <div class="border border-neutral-200 rounded-md hover:shadow-lg w-[300px] h-full">
+          <div class="relative p-4 border-t border-neutral-200">
+
+            <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1"></NuxtLink>
+
+            <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
+
+            <ProductFeatures :product="product" />
+
+          </div>
+        </div>
+        
       </div>
     </div>
   </form>
@@ -72,6 +79,7 @@ const handleSubmit = async () => {
 .products {
 
   &__header {
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,14 +98,13 @@ const handleSubmit = async () => {
 
   &__container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
   }
 
   &__item {
     position: relative;
-    padding: 1rem;
     margin: 1rem;
-    border: 1px solid #ccc;
     text-align: center;
   }
 
