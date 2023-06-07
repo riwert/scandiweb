@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+  // Cross-platform generic font family (default user interface font)
+  font-family: 'Inter',
+    system-ui,
+    // Safari for macOS and iOS (San Francisco)
+    -apple-system,
+    // Windows
+    "Segoe UI",
+    // Android
+    Roboto,
+    // Basic web fallback
+    "Helvetica Neue",
+    Arial,
+    // Linux
+    "Noto Sans",
+    "Liberation Sans",
+    // Sans serif fallback
+    sans-serif,
+    // Emoji fonts
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji" !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Secular+One',
+    // Cross-platform generic font family (default user interface font)
+    system-ui,
+    // Safari for macOS and iOS (San Francisco)
+    -apple-system,
+    // Windows
+    "Segoe UI",
+    // Android
+    Roboto,
+    // Basic web fallback
+    "Helvetica Neue", Arial,
+    // Linux
+    "Noto Sans",
+    "Liberation Sans",
+    // Sans serif fallback
+    sans-serif,
+    // Emoji fonts
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+a,
+a:hover,
+a:focus,
+a:active,
+.btn:hover,
+.btn:focus,
+.btn:active,
+button:hover,
+button:focus,
+button:active {
+  text-decoration: none !important;
+  // outline: none !important;
+}
+
+address {
+  font-style: normal;
+}
+
+a,
+button,
+input[type=button],
+input[type=submit],
+label,
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+section {
+  padding: 1rem 0;
+  background-color: var(--body-bg-color, #fff);
+  color: var(--body-text-color, #000);
+
+  &:nth-child(2n-1) {
+    background-color: var(--body-zebra-color, #fafafa);
+  }
+}
