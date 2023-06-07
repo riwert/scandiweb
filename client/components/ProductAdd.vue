@@ -105,6 +105,10 @@ const handleSubmit = async () => {
         <!-- id with typo lenght instead length to match with spec for testing -->
       </label>
 
+      <p v-if="newProduct.productType == 'dvd'">Please, provide size in MB</p>
+      <p v-if="newProduct.productType == 'book'">Please, provide weight in kg</p>
+      <p v-if="newProduct.productType == 'furniture'">Please, provide dimensions in HxWxL format</p>
+
     </div>
   </form>
 </template>
