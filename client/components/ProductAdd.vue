@@ -69,11 +69,11 @@ const handleSubmit = async () => {
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Price</span>
-          <SfInput type="number" min="0" step=".01" id="price" v-model="newProduct.price" class="product__input" placeholder="Price" required />
+          <SfInput type="number" min="0" step=".01" id="price" v-model="newProduct.price" class="product__input" placeholder="Price in $" required />
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
-          <span class="typography-text-sm font-medium">Product type</span>
+          <span class="typography-text-sm font-medium">Type switcher</span>
           <SfSelect v-model="newProduct.productType" placeholder="Choose product type" required>
             <option value="dvd">DVD</option>
             <option value="book">Book</option>
@@ -83,33 +83,33 @@ const handleSubmit = async () => {
 
         <label v-if="newProduct.productType == 'dvd'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Size</span>
-          <SfInput type="number" min="0" step=".01" id="size" v-model="newProduct.size" class="product__input" placeholder="Size" required />
+          <SfInput type="number" min="0" step=".01" id="size" v-model="newProduct.size" class="product__input" placeholder="Size in MB" required />
         </label>
 
         <label v-if="newProduct.productType == 'book'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Weight</span>
-          <SfInput type="number" min="0" step=".01" id="weight" v-model="newProduct.weight" class="product__input" placeholder="Weight" required />
+          <SfInput type="number" min="0" step=".01" id="weight" v-model="newProduct.weight" class="product__input" placeholder="Weight in kg" required />
         </label>
 
         <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Height</span>
-          <SfInput type="number" min="0" step=".01" id="height" v-model="newProduct.height" class="product__input" placeholder="Height" required />
+          <SfInput type="number" min="0" step=".01" id="height" v-model="newProduct.height" class="product__input" placeholder="Height in cm" required />
         </label>
 
         <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Width</span>
-          <SfInput type="number" min="0" step=".01" id="width" v-model="newProduct.width" class="product__input" placeholder="Width" required />
+          <SfInput type="number" min="0" step=".01" id="width" v-model="newProduct.width" class="product__input" placeholder="Width in cm" required />
         </label>
 
         <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
-          <span class="typography-text-sm font-medium">Lenght</span>
-          <SfInput type="number" min="0" step=".01" id="lenght" v-model="newProduct.length" class="product__input" placeholder="Lenght" required />
+          <span class="typography-text-sm font-medium">Length</span>
+          <SfInput type="number" min="0" step=".01" id="lenght" v-model="newProduct.length" class="product__input" placeholder="Length in cm" required />
           <!-- id with typo lenght instead length to match with spec for testing -->
         </label>
 
-        <p v-if="newProduct.productType == 'dvd'" class="text-xs text-neutral-500">Please, provide size in MB</p>
-        <p v-if="newProduct.productType == 'book'" class="text-xs text-neutral-500">Please, provide weight in kg</p>
-        <p v-if="newProduct.productType == 'furniture'" class="text-xs text-neutral-500">Please, provide all dimensions in cm to display it in HxWxL format</p>
+        <p v-if="newProduct.productType == 'dvd'" class="text-xs text-neutral-500">Please, provide size in MB as decimal number.</p>
+        <p v-if="newProduct.productType == 'book'" class="text-xs text-neutral-500">Please, provide weight in kg as decimal number.</p>
+        <p v-if="newProduct.productType == 'furniture'" class="text-xs text-neutral-500">Please, provide all dimensions in cm as decimal numbers to display it in HxWxL format.</p>
 
       </div>
     </div>
