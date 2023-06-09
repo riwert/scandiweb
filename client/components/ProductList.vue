@@ -64,7 +64,7 @@ const handleSubmit = async () => {
 
         <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
 
-        <ProductFeatures :product="product" />
+        <ProductDetails :product="product" />
 
       </div>
     </div>

@@ -37,7 +37,7 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
     <div class="product__container text-neutral-900">
       <div class="product__item max-w-5xl mx-auto bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-full h-full">
 
-        <ProductFeatures :product="product" />
+        <ProductDetails :product="product" />
 
       </div>
     </div>
