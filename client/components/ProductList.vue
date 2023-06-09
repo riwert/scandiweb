@@ -4,7 +4,7 @@ import { SfButton, SfCheckbox, SfLink } from '@storefront-ui/vue'
 const apiUrl = 'http://localhost/scandiweb/api'
 const getProducts = async () => {
   try {
-    const { data: products, error } = await useFetch(`${apiUrl}/product`)
+    const { data: products, error } = await useFetch(`${apiUrl}/product/list`)
     if (error.value) throw new Error(error.value)
     return products
   } catch(e) {

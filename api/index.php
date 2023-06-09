@@ -34,7 +34,7 @@ $router->addRoute('GET', '/product/get', function ($params) use ($productControl
     return $productController->getProduct($sku);
 });
 
-$router->addRoute('GET', '/product', function () use ($productController) {
+$router->addRoute('GET', '/product/list', function () use ($productController) {
     return $productController->productList();
 });
 
