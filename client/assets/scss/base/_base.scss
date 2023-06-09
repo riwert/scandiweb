@@ -72,9 +72,11 @@ a:active,
 .btn:hover,
 .btn:focus,
 .btn:active,
+button,
 button:hover,
 button:focus,
 button:active {
+  font-weight: bold !important;
   text-decoration: none !important;
   // outline: none !important;
 }

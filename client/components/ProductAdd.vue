@@ -109,7 +109,7 @@ const handleSubmit = async () => {
 
         <p v-if="newProduct.productType == 'dvd'" class="text-xs text-neutral-500">Please, provide size in MB</p>
         <p v-if="newProduct.productType == 'book'" class="text-xs text-neutral-500">Please, provide weight in kg</p>
-        <p v-if="newProduct.productType == 'furniture'" class="text-xs text-neutral-500">Please, provide dimensions in HxWxL format</p>
+        <p v-if="newProduct.productType == 'furniture'" class="text-xs text-neutral-500">Please, provide all dimensions in cm to display it in HxWxL format</p>
 
       </div>
     </div>

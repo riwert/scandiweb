@@ -60,7 +60,7 @@ const handleSubmit = async () => {
     <div class="products__container text-neutral-900">
       <div v-for="product in products" :key="product.id" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
 
-        <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1"></NuxtLink>
+        <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
         <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
 
