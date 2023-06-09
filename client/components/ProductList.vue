@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SfButton, SfCheckbox, SfLink } from '@storefront-ui/vue'
+import { SfButton, SfCheckbox } from '@storefront-ui/vue'
 
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
