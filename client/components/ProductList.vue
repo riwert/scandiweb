@@ -44,8 +44,8 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <form class="products" @submit.prevent="handleSubmit">
-    <div class="products__header">
+  <form class="products bg-gray-50" @submit.prevent="handleSubmit">
+    <div class="products__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold">Product List</h1>
       <div class="products__actions my-2">
         <SfButton type="button" class="" @click="useNavTo('/product/new')">
@@ -57,18 +57,15 @@ const handleSubmit = async () => {
       </div>
     </div>
     <hr>
-    <div class="products__container">
-      <div v-for="product in products" :key="product.id" class="products__item">
-        <div class="relative border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] h-full p-4">
+    <div class="products__container text-neutral-900">
+      <div v-for="product in products" :key="product.id" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
 
-          <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1"></NuxtLink>
+        <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1"></NuxtLink>
 
-          <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
+        <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
 
-          <ProductFeatures :product="product" />
+        <ProductFeatures :product="product" />
 
-        </div>
-        
       </div>
     </div>
   </form>
@@ -76,6 +73,9 @@ const handleSubmit = async () => {
 
 <style lang="scss" scoped>
 .products {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   &__header {
     padding: 1rem;
@@ -98,19 +98,22 @@ const handleSubmit = async () => {
   &__container {
     display: flex;
     justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
     flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
   }
 
   &__item {
     position: relative;
-    margin: 1rem;
     text-align: center;
   }
 
   &__checkbox {
     position: absolute;
-    top: 0.25rem;
-    left: 0.25rem;
+    top: 0.5rem;
+    left: 0.5rem;
   }
 }
 </style>

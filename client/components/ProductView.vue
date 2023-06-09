@@ -18,8 +18,8 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
 </script>
 
 <template>
-  <div class="product">
-    <div class="product__header">
+  <div class="product bg-gray-50">
+    <div class="product__header bg-white">
 
       <h1 class="typography-headline-2 my-2 font-bold">Product</h1>
 
@@ -34,8 +34,8 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
 
     </div>
     <hr>
-    <div class="product__container">
-      <div class="product__item max-w-5xl mx-auto border border-1 border-neutral-200 rounded-md hover:shadow-lg w-full h-full">
+    <div class="product__container text-neutral-900">
+      <div class="product__item max-w-5xl mx-auto bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-full h-full">
 
         <ProductFeatures :product="product" />
 
@@ -46,6 +46,9 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
 
 <style lang="scss" scoped>
 .product {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   &__header {
     padding: 1rem;

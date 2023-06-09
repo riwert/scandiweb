@@ -41,8 +41,8 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <form id="product_form" class="product" @submit.prevent="handleSubmit">
-    <div class="product__header">
+  <form id="product_form" class="product bg-gray-50" @submit.prevent="handleSubmit">
+    <div class="product__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold">Product Add</h1>
       <div class="product__actions my-2">
         <SfButton type="button" @click="useNavTo('/product/list')">
@@ -55,7 +55,7 @@ const handleSubmit = async () => {
     </div>
     <hr>
     <div class="product__container text-neutral-900">
-      <div class="product__item max-w-5xl mx-auto w-full h-full border border-1 border-neutral-200 rounded-md hover:shadow-lg">
+      <div class="product__item bg-white max-w-5xl mx-auto w-full h-full border border-1 border-neutral-200 rounded-md hover:shadow-lg">
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">SKU</span>
@@ -118,6 +118,9 @@ const handleSubmit = async () => {
 
 <style lang="scss" scoped>
 .product {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
   &__header {
     padding: 1rem;
@@ -139,7 +142,8 @@ const handleSubmit = async () => {
 
   &__container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
