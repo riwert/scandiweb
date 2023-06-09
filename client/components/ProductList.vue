@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { SfButton, SfCheckbox, SfLink } from '@storefront-ui/vue'
 
-const apiUrl = 'http://localhost/scandiweb/api'
+const config = useRuntimeConfig()
+const apiUrl = config.public.NUXT_API_URL
 const getProducts = async () => {
   try {
     const { data: products, error } = await useFetch(`${apiUrl}/product/list`)
@@ -58,16 +59,14 @@ const handleSubmit = async () => {
     <hr>
     <div class="products__container">
       <div v-for="product in products" :key="product.id" class="products__item">
-        <div class="border border-neutral-200 rounded-md hover:shadow-lg w-[300px] h-full">
-          <div class="relative p-4 border-t border-neutral-200">
+        <div class="relative border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] h-full p-4">
 
-            <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1"></NuxtLink>
+          <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1"></NuxtLink>
 
-            <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
+          <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
 
-            <ProductFeatures :product="product" />
+          <ProductFeatures :product="product" />
 
-          </div>
         </div>
         
       </div>

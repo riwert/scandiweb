@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { SfButton } from '@storefront-ui/vue'
 
-const apiUrl = 'http://localhost/scandiweb/api'
+const config = useRuntimeConfig()
+const apiUrl = config.public.NUXT_API_URL
 const getProduct = async (sku) => {
   try {
     const { data: product, error } = await useFetch(`${apiUrl}/product/get?sku=${sku}`)
@@ -13,9 +14,7 @@ const getProduct = async (sku) => {
 }
 
 const route = useRoute()
-console.log(route.query.sku)
-
-const product = await getProduct(route.query.sku)
+const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
 </script>
 
 <template>
@@ -28,7 +27,7 @@ const product = await getProduct(route.query.sku)
         <SfButton type="button" class="" @click="useNavTo('/product/new')">
           ADD
         </SfButton>
-        <SfButton type="button" class="" @click="useNavTo('/')">
+        <SfButton type="button" class="" @click="useNavTo('/product/list')">
           LIST
         </SfButton>
       </div>
@@ -36,14 +35,9 @@ const product = await getProduct(route.query.sku)
     </div>
     <hr>
     <div class="product__container">
-      <div class="product__item">
-        <div class="border border-neutral-200 rounded-md hover:shadow-lg w-full h-full">
-          <div class="p-4 border-t border-neutral-200">
+      <div class="product__item max-w-5xl mx-auto border border-1 border-neutral-200 rounded-md hover:shadow-lg w-full h-full">
 
-            <ProductFeatures :product="product" />
-
-          </div>
-        </div>
+        <ProductFeatures :product="product" />
 
       </div>
     </div>
@@ -74,12 +68,13 @@ const product = await getProduct(route.query.sku)
   &__container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
 
   &__item {
     position: relative;
+    padding: 1rem;
     margin: 1rem;
-    width: 100%;
     text-align: center;
   }
 }
