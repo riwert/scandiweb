@@ -3,6 +3,8 @@
     <NuxtLoadingIndicator />
 
     <NuxtPage />
+
+    <Footer />
   </div>
 </template>
 
