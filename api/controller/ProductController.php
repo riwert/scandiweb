@@ -5,8 +5,9 @@ namespace RAPI\controller;
 use RAPI\config\Response;
 use RAPI\service\ProductService;
 use RAPI\factory\ProductFactory;
-use Exception;
 use PDOException;
+use Exception;
+use Error;
 
 class ProductController
 {
@@ -34,7 +35,7 @@ class ProductController
             // Save the product using the ProductService
             $product->save($this->productService);
 
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }

@@ -2,11 +2,12 @@
 
 namespace RAPI\service;
 
+use RAPI\config\Database;
+use RAPI\config\Response;
 use PDO;
 use PDOException;
 use Exception;
-use RAPI\config\Database;
-use RAPI\config\Response;
+use Error;
 
 class ProductService
 {
@@ -42,7 +43,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product added'], 400);
             }
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -70,7 +71,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product added'], 400);
             }
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -100,7 +101,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product added'], 400);
             }
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -117,7 +118,7 @@ class ProductService
             $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
             return $product;
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -137,7 +138,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No product deleted'], 400);
             }
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -173,7 +174,7 @@ class ProductService
             } else {
                 return Response::handle(['error' => 'No products deleted'], 400);
             }
-        } catch (PDOException | Exception $e) {
+        } catch (PDOException | Exception | Error $e) {
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
