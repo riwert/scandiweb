@@ -2,8 +2,8 @@
 
 namespace RAPI\model;
 
+use RAPI\config\Response;
 use RAPI\model\Product;
-use Exception;
 
 class FurnitureProduct extends Product
 {
@@ -16,10 +16,23 @@ class FurnitureProduct extends Product
         parent::__construct($data);
 
         // Validate the input data
-        if (!isset($data['height']) || !isset($data['length']) || !isset($data['width'])) {
-            throw new Exception('Invalid data', 400);
+        if (!isset($data['height'])) {
+            $this->errors['height'] = 'Height is missing';
         }
 
+        if (!isset($data['length'])) {
+            $this->errors['length'] = 'Length is missing';
+        }
+
+        if (!isset($data['width'])) {
+            $this->errors['width'] = 'Width is missing';
+        }
+
+        if (count($this->errors)) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
+        }
+
+        // Bind the input data
         $this->setHeight($data['height']);
         $this->setLength($data['length']);
         $this->setWidth($data['width']);

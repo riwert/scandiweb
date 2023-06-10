@@ -2,8 +2,8 @@
 
 namespace RAPI\model;
 
+use RAPI\config\Response;
 use RAPI\model\Product;
-use Exception;
 
 class BookProduct extends Product
 {
@@ -14,8 +14,12 @@ class BookProduct extends Product
         parent::__construct($data);
 
         // Validate the input data
-        if (!isset($data['weight'])) {
-            throw new Exception('Invalid data', 400);
+        if (!isset($data['weight']) || empty($data['weight'])) {
+            $this->errors['weight'] = 'Weight is missing';
+        }
+
+        if (count($this->errors)) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
         }
 
         $this->setWeight($data['weight']);

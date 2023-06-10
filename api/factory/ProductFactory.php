@@ -17,6 +17,10 @@ class ProductFactory
 
     public static function createProduct($data)
     {
+        if (!isset($data['productType'])) {
+            throw new InvalidArgumentException('Product type is missing');
+        }
+
         $type = $data['productType'];
 
         if (!array_key_exists($type, self::$productTypes)) {

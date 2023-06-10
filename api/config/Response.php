@@ -17,6 +17,10 @@ class Response
             exit();
         }
 
+        if (!is_numeric($code)) {
+            $code = 500;
+        }
+
         header('Content-Type: application/json');
         http_response_code($code);
         echo json_encode($json);

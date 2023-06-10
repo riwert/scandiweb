@@ -2,8 +2,8 @@
 
 namespace RAPI\model;
 
+use RAPI\config\Response;
 use RAPI\model\Product;
-use Exception;
 
 class DvdProduct extends Product
 {
@@ -14,8 +14,12 @@ class DvdProduct extends Product
         parent::__construct($data);
 
         // Validate the input data
-        if (!isset($data['size'])) {
-            throw new Exception('Invalid data', 400);
+        if (!isset($data['size']) || empty($data['size'])) {
+            $this->errors['size'] = 'Size is missing';
+        }
+
+        if (count($this->errors)) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
         }
 
         $this->setSize($data['size']);

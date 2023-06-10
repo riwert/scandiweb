@@ -2,8 +2,8 @@
 
 namespace RAPI\model;
 
+use RAPI\config\Response;
 use RAPI\service\ProductService;
-use Exception;
 
 abstract class Product
 {
@@ -11,14 +11,34 @@ abstract class Product
     protected $name;
     protected $price;
     protected $productType;
+    public $errors = [];
 
     public function __construct($data)
     {
         // Validate the input data
-        if (!isset($data['sku']) || !isset($data['name']) || !isset($data['price']) || !isset($data['productType'])) {
-            throw new Exception('Invalid data', 400);
+        if (!isset($data['sku']) || empty($data['sku'])) {
+            $this->errors['sku'] = 'SKU is missing';
         }
 
+        if (!isset($data['name']) || empty($data['name'])) {
+            $this->errors['name'] = 'Name is missing';
+        }
+
+        if (!isset($data['price']) || empty($data['price'])) {
+            $this->errors['price'] = 'Price is missing';
+        } else if (!is_numeric($data['price'])) {
+            $this->errors['price'] = 'Price is not a number';
+        }
+
+        if (!isset($data['productType']) || empty($data['productType'])) {
+            $this->errors['productType'] = 'Product type is missing';
+        }
+
+        if (count($this->errors)) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
+        }
+
+        // Bind the input data
         $this->setSku($data['sku']);
         $this->setName($data['name']);
         $this->setPrice($data['price']);
