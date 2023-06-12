@@ -54,6 +54,14 @@ abstract class Product extends Model
         $this->setProductType($data['productType']);
     }
 
+    public function isSkuAlreadyExists($productService)
+    {
+        $productExists = $productService->fetchProductBySku($this->getSku());
+        if ($productExists) {
+            return Response::handle(['error' => 'Invalid data', 'errors' => ['sku' => 'SKU already exists']], 400);
+        }
+    }
+
     public function getSku()
     {
         return $this->sku;

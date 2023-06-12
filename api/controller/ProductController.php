@@ -32,6 +32,9 @@ class ProductController
             // Create a new product instance
             $product = ProductFactory::createProduct($data);
 
+            // Check if sku already exists
+            $product->isSkuAlreadyExists($this->productService);
+
             // Save the product using the ProductService
             $product->save($this->productService);
 
