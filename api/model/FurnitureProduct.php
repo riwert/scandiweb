@@ -71,16 +71,19 @@ class FurnitureProduct extends Product
 
     public function setHeight($height)
     {
-        $this->height = str_replace(',', '.', $height);
+        $height = str_replace(',', '.', $height);
+        $this->height = $height;
     }
 
     public function setLength($length)
     {
-        $this->length = str_replace(',', '.', $length);
+        $length = str_replace(',', '.', $length);
+        $this->length = $length;
     }
 
     public function setWidth($width)
     {
-        $this->width = str_replace(',', '.', $width);
+        $width = str_replace(',', '.', $width);
+        $this->width = $width;
     }
 }

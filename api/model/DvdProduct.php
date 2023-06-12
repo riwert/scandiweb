@@ -44,6 +44,7 @@ class DvdProduct extends Product
 
     public function setSize($size)
     {
-        $this->size = str_replace(',', '.', $size);
+        $size = str_replace(',', '.', $size);
+        $this->size = $size;
     }
 }

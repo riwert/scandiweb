@@ -45,6 +45,7 @@ class BookProduct extends Product
 
     public function setWeight($weight)
     {
-        $this->weight = str_replace(',', '.', $weight);
+        $weight = str_replace(',', '.', $weight);
+        $this->weight = $weight;
     }
 }

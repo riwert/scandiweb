@@ -78,19 +78,20 @@ abstract class Product extends Model
         $this->sku = $sku;
     }
 
-    public function setName($name): self
+    public function setName($name)
     {
         $this->name = $name;
-        return $this;
     }
 
     public function setPrice($price)
     {
-        $this->price = str_replace(',', '.', $price);
+        $price = str_replace(',', '.', $price);
+        $this->price = $price;
     }
 
     public function setProductType($productType)
     {
+        $productType = strtolower($productType);
         $this->productType = $productType;
     }
 }
