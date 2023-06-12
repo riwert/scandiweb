@@ -32,7 +32,7 @@ useHead({
 
 <template>
   <div class="app">
-    <NuxtLoadingIndicator />
+    <NuxtLoadingIndicator color="var(--primary-gradient)" />
 
     <NuxtPage />
 
@@ -41,6 +41,10 @@ useHead({
 </template>
 
 <style lang="scss">
+:root {
+  --primary-gradient: linear-gradient(to right, #dd4746 0, #434eb3 100%);
+}
+
 .page-enter-active {
   transition: all 0.15s;
 }
