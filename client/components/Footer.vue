@@ -64,6 +64,6 @@ onUnmounted(() => {
 
 <style lang="scss">
 body {
-  padding-bottom: var(--footer-height, 15rem);
+  padding-bottom: var(--footer-height, 7rem);
 }
 </style>
