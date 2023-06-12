@@ -65,10 +65,10 @@ const handleSubmit = async () => {
     <header class="products__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold">Product List</h1>
       <div class="products__actions my-2">
-        <SfButton type="button" class="" @click="useNavTo('/product/new')">
+        <SfButton type="button" @click="useNavTo('/product/new')">
           ADD
         </SfButton>
-        <SfButton type="submit" class="">
+        <SfButton type="submit">
           MASS DELETE
         </SfButton>
       </div>
