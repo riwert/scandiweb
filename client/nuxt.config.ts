@@ -1,6 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: false,
+  experimental: {
+    payloadExtraction: false,
+  },
+  nitro: {
+    preset: 'node-server',
+    prerender: {
+      crawlLinks: true,
+    },
+  },
   devtools: { enabled: true },
   runtimeConfig: {
     NODE_ENV: process.env.NODE_ENV,
@@ -9,14 +18,14 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
   css: [
     '~/assets/scss/styles.scss',
   ],
   modules: [
     '@nuxtjs/tailwindcss',
-    '@vite-pwa/nuxt'
+    '@vite-pwa/nuxt',
   ],
   pwa: {
     registerType: 'autoUpdate',
@@ -33,8 +42,8 @@ export default defineNuxtConfig({
     server: {
       hmr: {
         protocol: 'ws',
-        host: 'localhost'
-      }
-    }
+        host: 'localhost',
+      },
+    },
   },
 })
