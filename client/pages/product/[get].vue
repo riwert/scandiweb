@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main>
     <ProductView />
-  </div>
+  </main>
 </template>
