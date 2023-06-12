@@ -62,7 +62,7 @@ const handleSubmit = async () => {
 
 <template>
   <form class="products bg-gray-50" @submit.prevent="handleSubmit">
-    <div class="products__header bg-white">
+    <header class="products__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold">Product List</h1>
       <div class="products__actions my-2">
         <SfButton type="button" class="" @click="useNavTo('/product/new')">
@@ -76,7 +76,7 @@ const handleSubmit = async () => {
         <span v-text="messages.success" class="typography-text-sm font-medium text-green-500"></span>
         <span v-text="messages.error" class="typography-text-sm font-medium text-red-500"></span>
       </div>
-    </div>
+    </header>
     <hr>
     <div class="products__container text-neutral-900">
       <div v-for="product in products" :key="product.id" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
