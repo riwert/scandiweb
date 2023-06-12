@@ -27,10 +27,26 @@ const route = useRoute()
 const onClickHandler = (itemLink: string) => {
   useNavTo(itemLink)
 }
+
+const footerRef = ref(null)
+
+const updateFooterHeight = () => {
+  const footerHeight = footerRef.value.offsetHeight
+  document.documentElement.style.setProperty('--footer-height', `${footerHeight}px`);
+}
+
+onMounted(() => {
+  updateFooterHeight()
+  window.addEventListener('resize', updateFooterHeight)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateFooterHeight)
+})
 </script>
 
 <template>
-  <footer class="bottom-0 w-full left-0 fixed">
+  <footer ref="footerRef" class="bottom-0 w-full left-0 fixed">
     <nav class="flex flex-row items-stretch w-full">
       <SfButton v-for="item in items" :key="item.label" variant="tertiary" :class="[
         'py-1 flex flex-col h-full w-full rounded-none bg-primary-700 text-white font-bold hover:text-white hover:bg-primary-800 active:text-white active:bg-primary-900',
@@ -45,3 +61,9 @@ const onClickHandler = (itemLink: string) => {
     </nav>
   </footer>
 </template>
+
+<style lang="scss">
+body {
+  padding-bottom: var(--footer-height, 15rem);
+}
+</style>
