@@ -84,7 +84,8 @@ const handleSubmit = async () => {
           Save
         </SfButton>
       </div>
-      <div v-if="messages.error" class="product__error my-2">
+      <div v-if="messages.success || messages.error" class="product__message my-2">
+        <span v-text="messages.success" class="typography-text-sm font-medium text-green-500"></span>
         <span v-text="messages.error" class="typography-text-sm font-medium text-red-500"></span>
       </div>
     </header>
@@ -112,7 +113,7 @@ const handleSubmit = async () => {
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Type switcher</span>
-          <SfSelect @input="resetErrors('productType')" v-model="newProduct.productType" placeholder="Choose product type" required>
+          <SfSelect id="productType" @input="resetErrors('productType')" v-model="newProduct.productType" placeholder="Choose product type" required>
             <option value="dvd">DVD</option>
             <option value="book">Book</option>
             <option value="furniture">Furniture</option>
@@ -185,7 +186,7 @@ const handleSubmit = async () => {
     gap: 1rem;
   }
 
-  &__error {
+  &__message {
     width: 100%;
     flex-shrink: 0;
     text-align: center;
