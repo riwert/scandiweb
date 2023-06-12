@@ -169,8 +169,10 @@ class ProductService
             }
             $stmt->execute();
 
-            if ($stmt->rowCount()) {
-                return Response::handle(['success' => 'Products deleted successfully'], 200);
+            if ($stmt->rowCount() == 1) {
+                return Response::handle(['success' => 'Product deleted successfully'], 200);
+            } else if ($stmt->rowCount()) {
+                return Response::handle(['success' => 'Products deleted successfully ('.$stmt->rowCount().')'], 200);
             } else {
                 return Response::handle(['error' => 'No products deleted'], 400);
             }
