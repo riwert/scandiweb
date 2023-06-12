@@ -2,11 +2,13 @@
   "name": "nuxt-app",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "NUXT_API_URL=/api nuxt build",
     "dev": "nuxt dev",
     "generate": "NUXT_API_URL=/api nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "serve": "node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
