@@ -12,7 +12,12 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
 
 ## 2. Nuxt - [/client](/client)
 - [x] Nuxt.js v3
-- [x] Vue.js v3
+  - [x] Vue.js v3 and Vite
+  - [x] Vue Router
+  - [x] Vue Meta
+  - [x] TS
+  - [x] Composition API with Auto imports
+  - [x] SPA / SSR / SSR + Hydration/ SSG as rendering options
 - [x] Tailwind CSS v3
 - [x] Storefront UI v2
 - [x] PWA installable app [check manifest.json](client/public/manifest.json)
