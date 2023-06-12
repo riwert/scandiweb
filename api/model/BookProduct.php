@@ -2,7 +2,6 @@
 
 namespace RAPI\model;
 
-use RAPI\config\Response;
 use RAPI\model\Product;
 
 class BookProduct extends Product
