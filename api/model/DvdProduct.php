@@ -2,7 +2,6 @@
 
 namespace RAPI\model;
 
-use RAPI\config\Response;
 use RAPI\model\Product;
 
 class DvdProduct extends Product
@@ -11,17 +10,25 @@ class DvdProduct extends Product
 
     public function __construct($data)
     {
+        $this->validateExtra($data);
+
         parent::__construct($data);
 
+        $this->bindExtra($data);
+    }
+
+    public function validateExtra($data)
+    {
         // Validate the input data
-        if (!isset($data['size']) || empty($data['size'])) {
-            $this->errors['size'] = 'Size is missing';
+        if ($this->isMissing('size', $data)) {
+            $this->setError('size', 'Size is missing');
+        } else if ($this->isNotNumber('size', $data)) {
+            $this->setError('size', 'Size is not a number');
         }
+    }
 
-        if (count($this->errors)) {
-            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
-        }
-
+    public function bindExtra($data)
+    {
         $this->setSize($data['size']);
     }
 
@@ -35,13 +42,8 @@ class DvdProduct extends Product
         return $this->size;
     }
 
-    /**
-     * @param mixed $size 
-     * @return self
-     */
-    public function setSize($size): self
+    public function setSize($size)
     {
-        $this->size = $size;
-        return $this;
+        $this->size = str_replace(',', '.', $size);
     }
 }

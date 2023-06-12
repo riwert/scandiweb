@@ -11,17 +11,25 @@ class BookProduct extends Product
 
     public function __construct($data)
     {
+        $this->validateExtra($data);
+        
         parent::__construct($data);
-
+        
+        $this->bindExtra($data);
+    }
+    
+    public function validateExtra($data)
+    {
         // Validate the input data
-        if (!isset($data['weight']) || empty($data['weight'])) {
-            $this->errors['weight'] = 'Weight is missing';
+        if ($this->isMissing('weight', $data)) {
+            $this->setError('weight', 'Weight is missing');
+        } else if ($this->isNotNumber('weight', $data)) {
+            $this->setError('weight', 'Weight is not a number');
         }
-
-        if (count($this->errors)) {
-            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
-        }
-
+    }
+    
+    public function bindExtra($data)
+    {
         $this->setWeight($data['weight']);
     }
 
@@ -35,13 +43,8 @@ class BookProduct extends Product
         return $this->weight;
     }
 
-    /**
-     * @param mixed $weight
-     * @return self
-     */
-    public function setWeight($weight): self
+    public function setWeight($weight)
     {
         $this->weight = str_replace(',', '.', $weight);
-        return $this;
     }
 }

@@ -13,26 +13,37 @@ class FurnitureProduct extends Product
 
     public function __construct($data)
     {
+        $this->validateExtra($data);
+
         parent::__construct($data);
 
+        $this->bindExtra($data);
+    }
+
+    public function validateExtra($data)
+    {
         // Validate the input data
-        if (!isset($data['height'])) {
-            $this->errors['height'] = 'Height is missing';
+        if ($this->isMissing('height', $data)) {
+            $this->setError('height', 'Height is missing');
+        } else if ($this->isNotNumber('height', $data)) {
+            $this->setError('height', 'Height is not a number');
         }
 
-        if (!isset($data['length'])) {
-            $this->errors['length'] = 'Length is missing';
+        if ($this->isMissing('length', $data)) {
+            $this->setError('length', 'Length is missing');
+        } else if ($this->isNotNumber('length', $data)) {
+            $this->setError('length', 'Length is not a number');
         }
 
-        if (!isset($data['width'])) {
-            $this->errors['width'] = 'Width is missing';
+        if ($this->isMissing('width', $data)) {
+            $this->setError('width', 'Width is missing');
+        } else if ($this->isNotNumber('width', $data)) {
+            $this->setError('width', 'Width is not a number');
         }
+    }
 
-        if (count($this->errors)) {
-            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->errors], 400);
-        }
-
-        // Bind the input data
+    public function bindExtra($data)
+    {
         $this->setHeight($data['height']);
         $this->setLength($data['length']);
         $this->setWidth($data['width']);
@@ -58,33 +69,18 @@ class FurnitureProduct extends Product
         return $this->width;
     }
 
-    /**
-     * @param mixed $length
-     * @return self
-     */
-    public function setHeight($height): self
+    public function setHeight($height)
     {
         $this->height = str_replace(',', '.', $height);
-        return $this;
     }
 
-    /**
-     * @param mixed $length
-     * @return self
-     */
-    public function setLength($length): self
+    public function setLength($length)
     {
         $this->length = str_replace(',', '.', $length);
-        return $this;
     }
 
-    /**
-     * @param mixed $width
-     * @return self
-     */
-    public function setWidth($width): self
+    public function setWidth($width)
     {
         $this->width = str_replace(',', '.', $width);
-        return $this;
     }
 }

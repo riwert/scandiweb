@@ -2,10 +2,10 @@
 
 namespace RAPI\factory;
 
+use RAPI\config\Response;
 use RAPI\model\DvdProduct;
 use RAPI\model\BookProduct;
 use RAPI\model\FurnitureProduct;
-use InvalidArgumentException;
 
 class ProductFactory
 {
@@ -18,16 +18,14 @@ class ProductFactory
     public static function createProduct($data)
     {
         if (!isset($data['productType'])) {
-            throw new InvalidArgumentException('Product type is missing');
+            return Response::handle(['error' => 'Invalid data', 'errors' => ['productType' => 'Product type is missing']], 400);
         }
 
-        $type = $data['productType'];
-
-        if (!array_key_exists($type, self::$productTypes)) {
-            throw new InvalidArgumentException('Invalid product type');
+        if (!array_key_exists($data['productType'], self::$productTypes)) {
+            return Response::handle(['error' => 'Invalid data', 'errors' => ['productType' => 'Invalid product type']], 400);
         }
 
-        $productClass = self::$productTypes[$type];
+        $productClass = self::$productTypes[$data['productType']];
         return new $productClass($data);
     }
 }
