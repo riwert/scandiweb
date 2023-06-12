@@ -94,25 +94,25 @@ const handleSubmit = async () => {
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">SKU</span>
-          <SfInput type="text" id="sku" @input="resetErrors('sku')" v-model="newProduct.sku" class="product__input" placeholder="SKU" />
+          <SfInput type="text" id="sku" @input="resetErrors('sku')" v-model="newProduct.sku" class="product__input" placeholder="SKU" required />
           <span v-if="productErrors.sku" v-text="productErrors.sku" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Name</span>
-          <SfInput type="text" id="name" @input="resetErrors('name')" v-model="newProduct.name" class="product__input" placeholder="Name" />
+          <SfInput type="text" id="name" @input="resetErrors('name')" v-model="newProduct.name" class="product__input" placeholder="Name" required />
           <span v-if="productErrors.name" v-text="productErrors.name" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Price</span>
-          <SfInput type="number" min="0" step=".01" id="price" @input="resetErrors('price')" v-model="newProduct.price" class="product__input" placeholder="Price in $" />
+          <SfInput type="number" min="0" step=".01" id="price" @input="resetErrors('price')" v-model="newProduct.price" class="product__input" placeholder="Price in $" required />
           <span v-if="productErrors.price" v-text="productErrors.price" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Type switcher</span>
-          <SfSelect @input="resetErrors('productType')" v-model="newProduct.productType" placeholder="Choose product type" >
+          <SfSelect @input="resetErrors('productType')" v-model="newProduct.productType" placeholder="Choose product type" required>
             <option value="dvd">DVD</option>
             <option value="book">Book</option>
             <option value="furniture">Furniture</option>
@@ -122,32 +122,32 @@ const handleSubmit = async () => {
 
         <label v-if="newProduct.productType == 'dvd'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Size</span>
-          <SfInput type="number" min="0" step=".01" id="size" @input="resetErrors('size')" v-model="newProduct.size" class="product__input" placeholder="Size in MB" />
+          <SfInput type="number" min="0" step=".01" id="size" @input="resetErrors('size')" v-model="newProduct.size" class="product__input" placeholder="Size in MB" required />
           <span v-if="productErrors.size" v-text="productErrors.size" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label v-if="newProduct.productType == 'book'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Weight</span>
-          <SfInput type="number" min="0" step=".01" id="weight" @input="resetErrors('weight')" v-model="newProduct.weight" class="product__input" placeholder="Weight in kg" />
+          <SfInput type="number" min="0" step=".01" id="weight" @input="resetErrors('weight')" v-model="newProduct.weight" class="product__input" placeholder="Weight in kg" required />
           <span v-if="productErrors.weight" v-text="productErrors.weight" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Height</span>
-          <SfInput type="number" min="0" step=".01" id="height" @input="resetErrors('height')" v-model="newProduct.height" class="product__input" placeholder="Height in cm" />
+          <SfInput type="number" min="0" step=".01" id="height" @input="resetErrors('height')" v-model="newProduct.height" class="product__input" placeholder="Height in cm" required />
           <span v-if="productErrors.height" v-text="productErrors.height" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Width</span>
-          <SfInput type="number" min="0" step=".01" id="width" @input="resetErrors('width')" v-model="newProduct.width" class="product__input" placeholder="Width in cm" />
+          <SfInput type="number" min="0" step=".01" id="width" @input="resetErrors('width')" v-model="newProduct.width" class="product__input" placeholder="Width in cm" required />
           <span v-if="productErrors.width" v-text="productErrors.width" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
         <label v-if="newProduct.productType == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Length</span>
           <!-- id with typo lenght instead length to match with spec for testing -->
-          <SfInput type="number" min="0" step=".01" id="lenght" @input="resetErrors('length')" v-model="newProduct.length" class="product__input" placeholder="Length in cm" />
+          <SfInput type="number" min="0" step=".01" id="lenght" @input="resetErrors('length')" v-model="newProduct.length" class="product__input" placeholder="Length in cm" required />
           <span v-if="productErrors.length" v-text="productErrors.length" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
