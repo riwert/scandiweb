@@ -22,24 +22,41 @@ const deleteProducts = async (toDelete) => {
       method: 'DELETE',
       body: JSON.stringify({"skus": toDelete})
     })
-    if (error.value) throw new Error(error.value)
+    if (error.value) {
+      if (error.value.data && error.value.data.error) {
+        messages.error = error.value.data.error
+      }
+
+      throw new Error(error.value)
+    }
     return product
   } catch(e) {
     console.log(e)
   }
 }
 
+const messages = reactive({
+  success: '',
+  error: '',
+})
+
+const resetMessages = () => {
+  messages.success = ''
+  messages.error = ''
+}
+
 const handleSubmit = async () => {
+  resetMessages()
   let deleteSkus = Object.entries(deleteCheckbox)
   deleteSkus = deleteSkus.filter((checkbox) => checkbox[1])
   deleteSkus = deleteSkus.map((checkbox) => checkbox[0])
   deleteSkus = deleteSkus.join(',')
 
   const deleted = await deleteProducts(deleteSkus)
-  if (deleted) {
-    console.log(toRaw(deleted.value))
-    products = await getProducts()
-  }
+  if (!deleted || !deleted.value) return
+  // const deletedRaw = toRaw(deleted.value)
+  messages.success = deleted.value.success
+  products = await getProducts()
 }
 </script>
 
@@ -54,6 +71,10 @@ const handleSubmit = async () => {
         <SfButton type="submit" class="">
           MASS DELETE
         </SfButton>
+      </div>
+      <div v-if="messages.success || messages.error" class="products__message my-2">
+        <span v-text="messages.success" class="typography-text-sm font-medium text-green-500"></span>
+        <span v-text="messages.error" class="typography-text-sm font-medium text-red-500"></span>
       </div>
     </div>
     <hr>
@@ -80,6 +101,7 @@ const handleSubmit = async () => {
   &__header {
     padding: 1rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -93,6 +115,16 @@ const handleSubmit = async () => {
   &__actions {
     display: flex;
     gap: 1rem;
+  }
+
+  &__message {
+    width: 100%;
+    flex-shrink: 0;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      text-align: right;
+    }
   }
 
   &__container {

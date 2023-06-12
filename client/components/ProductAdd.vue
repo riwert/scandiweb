@@ -11,7 +11,7 @@ const addProduct = async () => {
     })
     if (error.value) {
       if (error.value.data && error.value.data.error) {
-        productErrors.message = error.value.data.error
+        messages.error = error.value.data.error
       }
 
       if (error.value.data && error.value.data.errors) {
@@ -31,21 +31,29 @@ const addProduct = async () => {
 
 const newProduct = reactive({})
 
-const productErrors = reactive({
-  message: '',
+const productErrors = reactive({})
+
+const messages = reactive({
+  success: '',
+  error: '',
 })
 
-const resetMessage = () => {
+const resetMessages = () => {
+  messages.success = ''
+  messages.error = ''
+}
+
+const resetIfNoErrors = () => {
   let allErrors = Object.entries(productErrors)
   allErrors = allErrors.filter((error) => error[1])
-  if (allErrors.length == 1) {
-    productErrors.message = ''
+  if (!allErrors.length) {
+    resetMessages()
   }
 }
 const resetErrors = (key = '') => {
   if (key) {
     productErrors[key] = ''
-    resetMessage()
+    resetIfNoErrors()
   } else {
     Object.keys(productErrors).forEach((key) => {
       productErrors[key] = ''
@@ -54,7 +62,8 @@ const resetErrors = (key = '') => {
 }
 
 const handleSubmit = async () => {
-  resetMessage()
+  resetErrors()
+  resetMessages()
   const product = await addProduct()
   if (!product || !product.value) return
   if ('success' in toRaw(product.value)) {
@@ -75,8 +84,8 @@ const handleSubmit = async () => {
           Save
         </SfButton>
       </div>
-      <div class="product__error my-2">
-        <span v-if="productErrors.message" v-text="productErrors.message" class="typography-text-sm font-medium text-red-500"></span>
+      <div v-if="messages.error" class="product__error my-2">
+        <span v-text="messages.error" class="typography-text-sm font-medium text-red-500"></span>
       </div>
     </div>
     <hr>
@@ -160,6 +169,7 @@ const handleSubmit = async () => {
   &__header {
     padding: 1rem;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -173,6 +183,16 @@ const handleSubmit = async () => {
   &__actions {
     display: flex;
     gap: 1rem;
+  }
+
+  &__error {
+    width: 100%;
+    flex-shrink: 0;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      text-align: right;
+    }
   }
 
   &__container {
