@@ -6,9 +6,9 @@ export default defineNuxtConfig({
   // },
   nitro: {
     preset: 'vercel-edge',
-    prerender: {
-      crawlLinks: true,
-    },
+    // prerender: {
+    //   crawlLinks: true,
+    // },
   },
   devtools: { enabled: true },
   runtimeConfig: {
