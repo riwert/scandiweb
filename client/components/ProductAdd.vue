@@ -10,11 +10,11 @@ const addProduct = async () => {
       body: JSON.stringify(newProduct)
     })
     if (error.value) {
-      if (error.value.data && error.value.data.error) {
+      if (error.value.data?.error) {
         messages.error = error.value.data.error
       }
 
-      if (error.value.data && error.value.data.errors) {
+      if (error.value.data?.errors) {
         const errors = error.value.data.errors
         Object.keys(errors).forEach((key) => {
           productErrors[key] = errors[key]
@@ -121,39 +121,39 @@ const handleSubmit = async () => {
           <span v-if="productErrors.productType" v-text="productErrors.productType" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
-        <label v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'dvd'" class="w-full flex flex-col gap-0.5">
+        <label v-if="newProduct.productType?.toLowerCase() == 'dvd'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Size</span>
           <SfInput type="number" min="0" step=".01" id="size" @input="resetErrors('size')" v-model="newProduct.size" class="product__input" placeholder="Size in MB" required />
           <span v-if="productErrors.size" v-text="productErrors.size" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
-        <label v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'book'" class="w-full flex flex-col gap-0.5">
+        <label v-if="newProduct.productType?.toLowerCase() == 'book'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Weight</span>
           <SfInput type="number" min="0" step=".01" id="weight" @input="resetErrors('weight')" v-model="newProduct.weight" class="product__input" placeholder="Weight in kg" required />
           <span v-if="productErrors.weight" v-text="productErrors.weight" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
-        <label v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
+        <label v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Height</span>
           <SfInput type="number" min="0" step=".01" id="height" @input="resetErrors('height')" v-model="newProduct.height" class="product__input" placeholder="Height in cm" required />
           <span v-if="productErrors.height" v-text="productErrors.height" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
-        <label v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
+        <label v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Width</span>
           <SfInput type="number" min="0" step=".01" id="width" @input="resetErrors('width')" v-model="newProduct.width" class="product__input" placeholder="Width in cm" required />
           <span v-if="productErrors.width" v-text="productErrors.width" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
-        <label v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
+        <label v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Length</span>
           <SfInput type="number" min="0" step=".01" id="length" @input="resetErrors('length')" v-model="newProduct.length" class="product__input" placeholder="Length in cm" required />
           <span v-if="productErrors.length" v-text="productErrors.length" class="typography-text-sm font-medium text-red-500"></span>
         </label>
 
-        <p v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'dvd'" class="text-xs text-neutral-500">Please, provide size in MB as decimal number.</p>
-        <p v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'book'" class="text-xs text-neutral-500">Please, provide weight in kg as decimal number.</p>
-        <p v-if="newProduct.productType && newProduct.productType.toLowerCase() == 'furniture'" class="text-xs text-neutral-500">Please, provide all dimensions in cm as decimal numbers to display it in HxWxL format.</p>
+        <p v-if="newProduct.productType?.toLowerCase() == 'dvd'" class="text-xs text-neutral-500">Please, provide size in MB as decimal number.</p>
+        <p v-if="newProduct.productType?.toLowerCase() == 'book'" class="text-xs text-neutral-500">Please, provide weight in kg as decimal number.</p>
+        <p v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="text-xs text-neutral-500">Please, provide all dimensions in cm as decimal numbers to display it in HxWxL format.</p>
 
       </div>
     </div>

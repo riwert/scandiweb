@@ -23,7 +23,7 @@ const deleteProducts = async (toDelete) => {
       body: JSON.stringify({"skus": toDelete})
     })
     if (error.value) {
-      if (error.value.data && error.value.data.error) {
+      if (error.value.data?.error) {
         messages.error = error.value.data.error
       }
 
