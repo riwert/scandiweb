@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
   nitro: {
-    preset: 'node-server',
+    preset: 'vercel-edge',
     prerender: {
       crawlLinks: true,
     },
