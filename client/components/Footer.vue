@@ -4,7 +4,7 @@ import { SfButton, SfIconHome, SfIconMenu, SfIconAdd } from '@storefront-ui/vue'
 const items = [
   {
     label: 'Home',
-    info: 'Same as Products',
+    info: 'Product List',
     icon: SfIconHome,
     link: '/',
   },
@@ -56,7 +56,7 @@ onUnmounted(() => {
           <Component :is="item.icon" />
         </template>
         <span v-html="item.label"></span>
-        <small v-if="item.info" v-html="item.info" class="text-xs text-white font-normal leading-none"></small>
+        <small v-if="item.info" v-html="item.info" class="text-sm text-white font-normal leading-none"></small>
       </SfButton>
     </nav>
   </footer>
