@@ -1,8 +1,8 @@
 <?php
 
-namespace RAPI\model;
+namespace SWAPI\model;
 
-use RAPI\config\Response;
+use SWAPI\config\Response;
 
 abstract class Product extends Model
 {

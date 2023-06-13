@@ -1,8 +1,8 @@
 <?php
 
-namespace RAPI\config;
+namespace SWAPI\config;
 
-use RAPI\config\Response;
+use SWAPI\config\Response;
 
 class Router
 {

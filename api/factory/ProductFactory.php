@@ -1,11 +1,11 @@
 <?php
 
-namespace RAPI\factory;
+namespace SWAPI\factory;
 
-use RAPI\config\Response;
-use RAPI\model\DvdProduct;
-use RAPI\model\BookProduct;
-use RAPI\model\FurnitureProduct;
+use SWAPI\config\Response;
+use SWAPI\model\DvdProduct;
+use SWAPI\model\BookProduct;
+use SWAPI\model\FurnitureProduct;
 
 class ProductFactory
 {

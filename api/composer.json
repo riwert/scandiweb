@@ -1,6 +1,6 @@
 {
     "name": "riwert/rapi",
-    "description": "RAPI - a simple PHP REST API for Scandiweb",
+    "description": "SWAPI - a simple PHP REST API for Scandiweb",
     "authors": [
         {
             "name": "Riwert",
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "RAPI\\": "./"
+            "SWAPI\\": "./"
         }
     },
     "require": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace RAPI\model;
+namespace SWAPI\model;
 
 abstract class Model
 {

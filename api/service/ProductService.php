@@ -1,9 +1,9 @@
 <?php
 
-namespace RAPI\service;
+namespace SWAPI\service;
 
-use RAPI\config\Database;
-use RAPI\config\Response;
+use SWAPI\config\Database;
+use SWAPI\config\Response;
 use PDO;
 use PDOException;
 use Exception;

@@ -1,10 +1,10 @@
 <?php
 
-namespace RAPI\controller;
+namespace SWAPI\controller;
 
-use RAPI\config\Response;
-use RAPI\service\ProductService;
-use RAPI\factory\ProductFactory;
+use SWAPI\config\Response;
+use SWAPI\service\ProductService;
+use SWAPI\factory\ProductFactory;
 use PDOException;
 use Exception;
 use Error;

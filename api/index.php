@@ -2,10 +2,10 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use RAPI\config\Router;
-use RAPI\config\Response;
-use RAPI\controller\ProductController;
-use RAPI\service\ProductService;
+use SWAPI\config\Router;
+use SWAPI\config\Response;
+use SWAPI\controller\ProductController;
+use SWAPI\service\ProductService;
 
 // Set the custom error handler
 set_error_handler(function ($errno, $errstr, $errfile, $errline) {

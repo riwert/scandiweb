@@ -1,3 +1,3 @@
 # riwert/rapi
 
-**RAPI** - a simple REST API in PHP (OOP)
+**SWAPI** - a simple REST API in PHP (OOP)

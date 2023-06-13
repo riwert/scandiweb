@@ -1,6 +1,6 @@
 <?php
 
-namespace RAPI\config;
+namespace SWAPI\config;
 
 class Response
 {

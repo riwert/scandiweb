@@ -1,8 +1,8 @@
 <?php
 
-namespace RAPI\model;
+namespace SWAPI\model;
 
-use RAPI\model\Product;
+use SWAPI\model\Product;
 
 class BookProduct extends Product
 {
