@@ -45,8 +45,21 @@ const resetMessages = () => {
   messages.error = ''
 }
 
+// fallback function for testing when programmatically checked checkboxes
+const triggerChangeEventForChecked = () => {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]')
+
+  for (i=0; i<checkboxes.length; i++) {
+    if (checkboxes[i]?.checked) {
+      const changeEvent = new Event('change')
+      checkboxes[i]?.dispatchEvent(changeEvent)
+    }
+  }
+}
+
 const handleSubmit = async () => {
   resetMessages()
+  triggerChangeEventForChecked()
   let deleteSkus = Object.entries(deleteCheckbox)
   deleteSkus = deleteSkus.filter((checkbox) => checkbox[1])
   deleteSkus = deleteSkus.map((checkbox) => checkbox[0])
