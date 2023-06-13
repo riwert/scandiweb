@@ -83,7 +83,7 @@ const handleSubmit = async () => {
 
         <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
-        <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="MASS DELETE" class="products__checkbox delete-checkbox z-2" />
+        <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox z-2" />
 
         <ProductDetails :product="product" />
 
