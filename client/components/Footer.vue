@@ -4,7 +4,7 @@ import { SfButton, SfIconHome, SfIconMenu, SfIconAdd } from '@storefront-ui/vue'
 const items = [
   {
     label: 'Home',
-    info: 'Product List',
+    info: 'Redirects to Products',
     icon: SfIconHome,
     link: '/',
   },
