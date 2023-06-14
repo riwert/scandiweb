@@ -7,9 +7,9 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
 - [x] Composer packages
 - [x] OOP approach
 - [x] PDO for SQL
-- [x] MySQL database [import SQL from file](api/database/scandiweb.sql)
-- [x] ENV config [set .env based on .env.example](api/.env.example)
-- [x] mod_rewrite [set .htaccess RewriteBase /{api dir}}](api/.htaccess)
+- [x] MySQL database [import SQL from scandiweb.sql file](api/database/scandiweb.sql)
+- [x] ENV config [set new .env based on .env.example](api/.env.example)
+- [x] mod_rewrite [set in .htaccess correct ```RewriteBase /API_DIR```](api/.htaccess)
 
 ## 2. Produx - Nuxt.js client - [/client](client)
 - [x] Nuxt v3
@@ -23,7 +23,7 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
 - [x] Tailwind CSS v3
 - [x] Storefront UI v2
 - [x] PWA installable [check manifest.json](client/public/manifest.json)
-- [x] ENV config [set .env based on .env.example](client/.env.example)
+- [x] ENV config [set new .env based on .env.example](client/.env.example)
 
 ## Ad.1 SWAPI screenshot
 [!['SWAPI example'](api/swapi-screenshot.png)](api/swapi-screenshot.png 'See SWAPI example screenshot')
