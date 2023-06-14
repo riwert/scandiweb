@@ -1,6 +1,8 @@
 # Scandiweb Products
 
-Mid-senior & Senior Web Developer test assignment in Scandiweb
+Mid-senior & Senior Web Developer test assignment in Scandiweb.
+
+App demo: [produx.vercel.app](https://produx.vercel.app)
 
 ## 1. SWAPI - PHP REST API - [/api](api)
 - [x] Vanilla PHP (without any framework)
