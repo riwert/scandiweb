@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss'
 import { tailwindConfig } from '@storefront-ui/vue/tailwind-config'
-import sfTypography from '@storefront-ui/typography';
-import { SFUICommentOptions } from '@storefront-ui/vue'
+import sfTypography from '@storefront-ui/typography'
 
 export default <Config>{
   presets: [tailwindConfig],
@@ -24,11 +23,8 @@ export default <Config>{
           700: '#e04f4f',
           800: '#c42f2e',
           900: '#aa2928',
-        }
+        },
       },
     },
   },
-  sfui: {
-    enabled: false
-  } as SFUICommentOptions
 }

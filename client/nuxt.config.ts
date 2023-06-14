@@ -1,5 +1,3 @@
-import sfuiConfig from './sfui.config'
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   // ssr: false,
@@ -29,9 +27,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vite-pwa/nuxt',
   ],
-  build: {
-    sfui: sfuiConfig,
-  },
   pwa: {
     registerType: 'autoUpdate',
     icon: false,
