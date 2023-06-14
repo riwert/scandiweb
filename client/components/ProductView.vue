@@ -22,8 +22,8 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
       <h1 class="typography-headline-2 my-2 font-bold">Product</h1>
 
       <div class="product__actions my-2">
-        <SfBtn type="button" @click="useNavTo('/product/new')" variant="secondary">ADD</SfBtn>
-        <SfBtn type="submit" variant="primary">MASS DELETE</SfBtn>
+        <button type="button" @click="useNavTo('/product/new')" class="btn-secondary">ADD</button>
+        <button type="submit" class="btn-primary">MASS DELETE</button>
       </div>
 
     </header>
