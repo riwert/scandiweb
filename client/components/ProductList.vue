@@ -86,8 +86,8 @@ const handleSubmit = async () => {
         </SfButton>
       </div>
       <div v-if="messages.success || messages.error" class="products__message my-2">
-        <span v-text="messages.success" class="typography-text-sm font-medium text-green-500"></span>
-        <span v-text="messages.error" class="typography-text-sm font-medium text-red-500"></span>
+        <span v-text="messages.success" class="typography-text-sm font-medium text-positive-700"></span>
+        <span v-text="messages.error" class="typography-text-sm font-medium text-negative-700"></span>
       </div>
     </header>
     <hr>
