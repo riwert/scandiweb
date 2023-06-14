@@ -2,7 +2,7 @@
 
 Mid-senior & Senior Web Developer test assignment in Scandiweb
 
-## 1. SWAPI - PHP REST API - [/api](/api)
+## 1. SWAPI - PHP REST API - [/api](api)
 - [x] Vanilla PHP (without any framework)
 - [x] OOP
 - [x] PDO
@@ -10,7 +10,7 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
 - [x] MySQL database [import SQL from file](api/database/scandiweb.sql)
 - [x] ENV based [set .env based on .env.example](api/.env.example)
 
-## 2. Produx - Nuxt.js client - [/client](/client)
+## 2. Produx - Nuxt.js client - [/client](client)
 - [x] Nuxt v3
   - [x] Vue v3 and Vite
   - [x] Vue Router
@@ -22,3 +22,8 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
 - [x] Storefront UI v2
 - [x] PWA installable app [check manifest.json](client/public/manifest.json)
 - [x] ENV based [set .env based on .env.example](client/.env.example)
+
+## Ad.1 SWAPI screenshot
+[!['SWAPI example'](api/swapi-screenshot.png)](api/swapi-screenshot.png 'See SWAPI example screenshot')
+## Ad.2 Produx screenshot
+[!['Produx example'](client/produx-screenshot.jpg)](client/produx-screenshot.jpg 'See Produx example screenshot')
