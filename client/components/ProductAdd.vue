@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SfSelect, SfInput, SfButton } from '@storefront-ui/vue'
+import { SfSelect, SfInput } from '@storefront-ui/vue'
 
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
@@ -77,12 +77,8 @@ const handleSubmit = async () => {
     <header class="product__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold">Product Add</h1>
       <div class="product__actions my-2">
-        <SfButton type="button" @click="useNavTo('/product/list')" variant="secondary">
-          <span>Cancel</span>
-        </SfButton>
-        <SfButton type="submit" variant="primary">
-          <span>Save</span>
-        </SfButton>
+        <SfBtn type="button" @click="useNavTo('/product/list')" variant="secondary">Cancel</SfBtn>
+        <SfBtn type="submit" variant="primary">Save</SfBtn>
       </div>
       <div v-if="messages.success || messages.error" class="product__message my-2">
         <span v-text="messages.success" class="typography-text-sm font-medium text-positive-700"></span>

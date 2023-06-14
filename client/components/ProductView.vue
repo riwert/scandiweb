@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { SfButton } from '@storefront-ui/vue'
-
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
 const getProduct = async (sku) => {
@@ -24,12 +22,8 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
       <h1 class="typography-headline-2 my-2 font-bold">Product</h1>
 
       <div class="product__actions my-2">
-        <SfButton type="button" @click="useNavTo('/product/new')" variant="secondary">
-          <span>ADD</span>
-        </SfButton>
-        <SfButton type="submit" variant="primary">
-          <span>MASS DELETE</span>
-        </SfButton>
+        <SfBtn type="button" @click="useNavTo('/product/new')" variant="secondary">ADD</SfBtn>
+        <SfBtn type="submit" variant="primary">MASS DELETE</SfBtn>
       </div>
 
     </header>
