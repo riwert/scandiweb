@@ -77,8 +77,8 @@ const handleSubmit = async () => {
     <header class="product__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold">Product Add</h1>
       <div class="product__actions my-2">
-        <SfButton type="button" @click="useNavTo('/product/list')" variant="secondary" v-html="'Cancel'"></SfButton>
-        <SfButton type="submit" variant="primary" v-html="'Save'"></SfButton>
+        <SfButton type="button" @click="useNavTo('/product/list')" variant="secondary" v-text="'Cancel'"></SfButton>
+        <SfButton type="submit" variant="primary" v-text="'Save'"></SfButton>
       </div>
       <div v-if="messages.success || messages.error" class="product__message my-2">
         <span v-text="messages.success" class="typography-text-sm font-medium text-positive-700"></span>
