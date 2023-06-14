@@ -71,12 +71,16 @@ const handleSubmit = async () => {
   messages.success = deleted.value.success
   products = await getProducts()
 }
+
+const props = defineProps({
+  title: Object
+})
 </script>
 
 <template>
   <form class="products bg-gray-50" @submit.prevent="handleSubmit">
     <header class="products__header bg-white">
-      <h1 class="typography-headline-2 my-2 font-bold">Product List</h1>
+      <h1 class="typography-headline-2 my-2 font-bold" v-text="title"></h1>
       <div class="products__actions my-2">
         <SfButton type="button" @click="useNavTo('/product/new')">
           ADD

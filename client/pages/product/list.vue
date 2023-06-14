@@ -1,5 +1,5 @@
 <template>
   <main>
-    <ProductList />
+    <ProductList :title="'Product List'" />
   </main>
 </template>

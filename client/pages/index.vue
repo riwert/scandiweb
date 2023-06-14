@@ -1,11 +1,5 @@
-<script setup lang="ts">
-definePageMeta({
-  middleware: 'redirects',
-})
-</script>
-
 <template>
   <main>
-    <ProductList />
+    <ProductList :title="'Product List'" />
   </main>
 </template>
