@@ -65,8 +65,9 @@ class Response
             if (is_array($value)) {
                 $subNode = $xml->addChild($key);
                 self::arrayToXml($value, $subNode);
-            } else if ($value) {
-                $xml->addChild($key, htmlspecialchars($value));
+            } else {
+                $value = ($value) ? htmlspecialchars($value) : '';
+                $xml->addChild($key, $value);
             }
         }
     }
