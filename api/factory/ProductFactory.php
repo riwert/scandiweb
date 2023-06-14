@@ -21,11 +21,13 @@ class ProductFactory
             return Response::handle(['error' => 'Invalid data', 'errors' => ['productType' => 'Product type is missing']], 400);
         }
 
-        if (!array_key_exists(strtolower($data['productType']), self::$productTypes)) {
+        $data['productType'] = strtolower($data['productType']);
+
+        if (!array_key_exists($data['productType'], self::$productTypes)) {
             return Response::handle(['error' => 'Invalid data', 'errors' => ['productType' => 'Invalid product type']], 400);
         }
 
-        $productClass = self::$productTypes[strtolower($data['productType'])];
+        $productClass = self::$productTypes[$data['productType']];
         return new $productClass($data);
     }
 }

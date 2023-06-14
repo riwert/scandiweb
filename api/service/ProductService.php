@@ -27,8 +27,12 @@ class ProductService
 
     public function __construct()
     {
-        $this->database = Database::getInstance();
-        $this->pdo = $this->database->getConnection();
+        try {
+            $this->database = Database::getInstance();
+            $this->pdo = $this->database->getConnection();
+        } catch (PDOException | Exception | Error $e) {
+            return Response::handle(['error' => $e->getMessage()], $e->getCode());
+        }
     }
 
     public function saveDvdProduct($product)
@@ -157,9 +161,11 @@ class ProductService
     public function massDeleteProductsBySkus($skus)
     {
         try {
+            // Throw an exception for missing skus param
             if (!isset($skus)) {
                 throw new Exception('Invalid data', 400);
             }
+
             // Extract comma separated skus from parameter
             $skus = explode(',', $skus);
 

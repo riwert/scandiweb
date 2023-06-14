@@ -2,12 +2,8 @@
 
 namespace SWAPI\controller;
 
-use SWAPI\config\Response;
 use SWAPI\service\ProductService;
 use SWAPI\factory\ProductFactory;
-use PDOException;
-use Exception;
-use Error;
 
 class ProductController
 {
@@ -28,19 +24,14 @@ class ProductController
 
     public function addProduct($data)
     {
-        try {
-            // Create a new product instance
-            $product = ProductFactory::createProduct($data);
+        // Create a new product instance
+        $product = ProductFactory::createProduct($data);
 
-            // Check if sku already exists
-            $product->isSkuAlreadyExists($this->productService);
+        // Check if sku already exists
+        $product->isSkuAlreadyExists($this->productService);
 
-            // Save the product using the ProductService
-            $product->save($this->productService);
-
-        } catch (PDOException | Exception | Error $e) {
-            return Response::handle(['error' => $e->getMessage()], $e->getCode());
-        }
+        // Save the product using the ProductService
+        $product->save($this->productService);
     }
 
     public function getProduct($sku)

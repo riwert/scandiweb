@@ -35,7 +35,7 @@ $router->addRoute('POST', '/product/saveApi', function () use ($productControlle
 });
 
 $router->addRoute('DELETE', '/product/delete', function ($params) use ($productController) {
-    // sku from query param ?sku=
+    // sku from url query param ?sku=
     $sku = $params['sku'] ?? null;
     // data from body json payload
     $data = json_decode(file_get_contents('php://input'), true);
@@ -45,7 +45,7 @@ $router->addRoute('DELETE', '/product/delete', function ($params) use ($productC
 });
 
 $router->addRoute('DELETE', '/product/massDelete', function ($params) use ($productController) {
-    // skus from query param ?skus=
+    // skus from url query param ?skus=
     $skus = $params['skus'] ?? null;
     // data from body json payload
     $data = json_decode(file_get_contents('php://input'), true);
@@ -55,7 +55,7 @@ $router->addRoute('DELETE', '/product/massDelete', function ($params) use ($prod
 });
 
 $router->addRoute('GET', '/product/get', function ($params) use ($productController) {
-    // sku from query param ?sku=
+    // sku from url query param ?sku=
     $sku = $params['sku'] ?? null;
     return $productController->getProduct($sku);
 });

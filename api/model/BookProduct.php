@@ -11,12 +11,12 @@ class BookProduct extends Product
     public function __construct($data)
     {
         $this->validateExtra($data);
-        
+
         parent::__construct($data);
-        
+
         $this->bindExtra($data);
     }
-    
+
     public function validateExtra($data)
     {
         // Validate the input data
@@ -26,7 +26,7 @@ class BookProduct extends Product
             $this->setError('weight', 'Weight is not a number');
         }
     }
-    
+
     public function bindExtra($data)
     {
         $this->setWeight($data['weight']);
