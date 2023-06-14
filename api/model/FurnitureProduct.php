@@ -2,6 +2,7 @@
 
 namespace SWAPI\model;
 
+use SWAPI\config\Response;
 use SWAPI\model\Product;
 
 class FurnitureProduct extends Product
@@ -12,16 +13,21 @@ class FurnitureProduct extends Product
 
     public function __construct($data)
     {
-        $this->validateExtra($data);
+        // Validate the input data
+        $this->validate($data);
 
-        parent::__construct($data);
+        // Verify if there is no errors
+        if (!$this->verify()) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->getErrors()], 400);
+        }
 
-        $this->bindExtra($data);
+        // Bind the input data
+        $this->bind($data);
     }
 
-    public function validateExtra($data)
+    public function validate($data)
     {
-        // Validate the input data
+        parent::validate($data);
         if ($this->isMissing('height', $data)) {
             $this->setError('height', 'Height is missing');
         } else if ($this->isNotNumber('height', $data)) {
@@ -41,16 +47,12 @@ class FurnitureProduct extends Product
         }
     }
 
-    public function bindExtra($data)
+    public function bind($data)
     {
+        parent::bind($data);
         $this->setHeight($data['height']);
         $this->setLength($data['length']);
         $this->setWidth($data['width']);
-    }
-
-    public function save($productService)
-    {
-        $productService->saveFurnitureProduct($this);
     }
 
     public function export()
@@ -62,6 +64,11 @@ class FurnitureProduct extends Product
             'length' => $this->getLength(),
             'width' => $this->getWidth(),
         ]);
+    }
+
+    public function save($productService)
+    {
+        $productService->saveFurnitureProduct($this);
     }
 
     public function getHeight()

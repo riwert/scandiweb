@@ -2,6 +2,7 @@
 
 namespace SWAPI\model;
 
+use SWAPI\config\Response;
 use SWAPI\model\Product;
 
 class DvdProduct extends Product
@@ -10,16 +11,21 @@ class DvdProduct extends Product
 
     public function __construct($data)
     {
-        $this->validateExtra($data);
+        // Validate the input data
+        $this->validate($data);
 
-        parent::__construct($data);
+        // Verify if there is no errors
+        if (!$this->verify()) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->getErrors()], 400);
+        }
 
-        $this->bindExtra($data);
+        // Bind the input data
+        $this->bind($data);
     }
 
-    public function validateExtra($data)
+    public function validate($data)
     {
-        // Validate the input data
+        parent::validate($data);
         if ($this->isMissing('size', $data)) {
             $this->setError('size', 'Size is missing');
         } else if ($this->isNotNumber('size', $data)) {
@@ -27,14 +33,10 @@ class DvdProduct extends Product
         }
     }
 
-    public function bindExtra($data)
+    public function bind($data)
     {
+        parent::bind($data);
         $this->setSize($data['size']);
-    }
-
-    public function save($productService)
-    {
-        $productService->saveDvdProduct($this);
     }
 
     public function export()
@@ -44,6 +46,11 @@ class DvdProduct extends Product
         return array_merge($parentExport, [
             'size' => $this->getSize(),
         ]);
+    }
+
+    public function save($productService)
+    {
+        $productService->saveDvdProduct($this);
     }
 
     public function getSize()

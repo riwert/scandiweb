@@ -2,6 +2,7 @@
 
 namespace SWAPI\model;
 
+use SWAPI\config\Response;
 use SWAPI\model\Product;
 
 class BookProduct extends Product
@@ -10,16 +11,21 @@ class BookProduct extends Product
 
     public function __construct($data)
     {
-        $this->validateExtra($data);
+        // Validate the input data
+        $this->validate($data);
 
-        parent::__construct($data);
+        // Verify if there is no errors
+        if (!$this->verify()) {
+            return Response::handle(['error' => 'Invalid data'] + ['errors' => $this->getErrors()], 400);
+        }
 
-        $this->bindExtra($data);
+        // Bind the input data
+        $this->bind($data);
     }
 
-    public function validateExtra($data)
+    public function validate($data)
     {
-        // Validate the input data
+        parent::validate($data);
         if ($this->isMissing('weight', $data)) {
             $this->setError('weight', 'Weight is missing');
         } else if ($this->isNotNumber('weight', $data)) {
@@ -27,14 +33,10 @@ class BookProduct extends Product
         }
     }
 
-    public function bindExtra($data)
+    public function bind($data)
     {
+        parent::bind($data);
         $this->setWeight($data['weight']);
-    }
-
-    public function save($productService)
-    {
-        $productService->saveBookProduct($this);
     }
 
     public function export()
@@ -44,6 +46,11 @@ class BookProduct extends Product
         return array_merge($parentExport, [
             'weight' => $this->getWeight(),
         ]);
+    }
+
+    public function save($productService)
+    {
+        $productService->saveBookProduct($this);
     }
 
     public function getWeight()
