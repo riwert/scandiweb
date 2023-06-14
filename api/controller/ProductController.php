@@ -19,12 +19,33 @@ class ProductController
         // Retrieve all products using the ProductService
         $products = $this->productService->getAllProducts();
 
-        return $products;
+        $productExport = [];
+        foreach ($products as $data) {
+            // Create a new product instance in the right type
+            $product = ProductFactory::createProduct($data);
+
+            // Return data in product export
+            $productExport[] = $product->export();
+        }
+
+        return $productExport;
+    }
+
+    public function getProduct($sku)
+    {
+        // Retrieve all products using the ProductService
+        $data = $this->productService->fetchProductBySku($sku);
+
+        // Create a new product instance in the right type
+        $product = ProductFactory::createProduct($data);
+
+        // Return data in product export
+        return $product->export();
     }
 
     public function addProduct($data)
     {
-        // Create a new product instance
+        // Create a new product instance in the right type
         $product = ProductFactory::createProduct($data);
 
         // Check if sku already exists
@@ -32,14 +53,6 @@ class ProductController
 
         // Save the product using the ProductService
         $product->save($this->productService);
-    }
-
-    public function getProduct($sku)
-    {
-        // Retrieve all products using the ProductService
-        $product = $this->productService->fetchProductBySku($sku);
-
-        return $product;
     }
 
     public function deleteProduct($sku)

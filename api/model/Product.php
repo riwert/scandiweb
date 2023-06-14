@@ -54,6 +54,16 @@ abstract class Product extends Model
         $this->setProductType($data['productType']);
     }
 
+    public function export()
+    {
+        return [
+            'sku' => $this->getSku(),
+            'name' => $this->getName(),
+            'price' => $this->getPrice(),
+            'productType' => $this->getProductType(),
+        ];
+    }
+
     public function isSkuAlreadyExists($productService)
     {
         $productExists = $productService->fetchProductBySku($this->getSku());

@@ -9,6 +9,7 @@ abstract class Model
     abstract public function validate($data);
     abstract public function bind($data);
     abstract public function save($service);
+    abstract public function export();
 
     public function getErrors()
     {

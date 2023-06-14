@@ -37,6 +37,15 @@ class BookProduct extends Product
         $productService->saveBookProduct($this);
     }
 
+    public function export()
+    {
+        $parentExport = parent::export();
+
+        return array_merge($parentExport, [
+            'weight' => $this->getWeight(),
+        ]);
+    }
+
     public function getWeight()
     {
         return $this->weight;

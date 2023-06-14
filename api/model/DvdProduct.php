@@ -37,6 +37,15 @@ class DvdProduct extends Product
         $productService->saveDvdProduct($this);
     }
 
+    public function export()
+    {
+        $parentExport = parent::export();
+
+        return array_merge($parentExport, [
+            'size' => $this->getSize(),
+        ]);
+    }
+
     public function getSize()
     {
         return $this->size;

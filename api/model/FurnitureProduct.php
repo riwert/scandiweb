@@ -53,6 +53,17 @@ class FurnitureProduct extends Product
         $productService->saveFurnitureProduct($this);
     }
 
+    public function export()
+    {
+        $parentExport = parent::export();
+
+        return array_merge($parentExport, [
+            'height' => $this->getHeight(),
+            'length' => $this->getLength(),
+            'width' => $this->getWidth(),
+        ]);
+    }
+
     public function getHeight()
     {
         return $this->height;
