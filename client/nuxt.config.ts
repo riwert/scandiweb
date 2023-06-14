@@ -25,25 +25,25 @@ export default defineNuxtConfig({
   ],
   modules: [
     '@nuxtjs/tailwindcss',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
   ],
-  pwa: {
-    registerType: 'autoUpdate',
-    icon: false,
-    meta: false,
-    manifest: false,
-    strategies: 'generateSW',
-    workbox: {
-      globPatterns: ['**/*.{js,css,png,svg,ico}'],
-      navigateFallback: null,
-    },
-  },
-  vite: {
-    server: {
-      hmr: {
-        protocol: 'ws',
-        host: 'localhost',
-      },
-    },
-  },
+  // pwa: {
+  //   registerType: 'autoUpdate',
+  //   icon: false,
+  //   meta: false,
+  //   manifest: false,
+  //   strategies: 'generateSW',
+  //   workbox: {
+  //     globPatterns: ['**/*.{js,css,png,svg,ico}'],
+  //     navigateFallback: null,
+  //   },
+  // },
+  // vite: {
+  //   server: {
+  //     hmr: {
+  //       protocol: 'ws',
+  //       host: 'localhost',
+  //     },
+  //   },
+  // },
 })
