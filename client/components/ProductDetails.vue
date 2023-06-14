@@ -8,7 +8,7 @@ const props = defineProps({
   <div class="product__features">
 
     <p class="block py-2 font-normal typography-text-sm text-neutral-500">{{ product.sku }}</p>
-    <p class="block py-2 font-bold typography-text-lg text-neutral-700">{{ product.name }}</p>
+    <p class="block py-2 font-medium typography-text-lg text-neutral-700">{{ product.name }}</p>
     <p class="block py-2 font-bold typography-text-lg text-neutral-700">${{ product.price }}</p>
     <p class="block py-2 font-normal typography-text-sm text-neutral-500" v-if="product.productType == 'dvd'">Size: {{ useTrimZeros(product.size) }} MB</p>
     <p class="block py-2 font-normal typography-text-sm text-neutral-500" v-if="product.productType == 'book'">Weight: {{ useTrimZeros(product.weight) }} kg</p>
