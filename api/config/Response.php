@@ -42,6 +42,9 @@ class Response
             case 'plain':
                 self::plain($data);
                 break;
+            case 'query':
+                self::query($data);
+                break;
             case 'csv':
                 self::csv($data);
                 break;
@@ -82,12 +85,19 @@ class Response
     public static function plain($data)
     {
         header('Content-Type: text/plain');
+        echo $data;
+    }
+
+    public static function query($data)
+    {
+        header('Content-Type: application/x-www-form-urlencoded');
         echo http_build_query($data);
     }
 
     public static function csv($data)
     {
-        header('Content-Type: text/plain');
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="data.csv"');
 
         // Create a temporary file handle
         $tempFile = fopen('php://temp', 'w');
