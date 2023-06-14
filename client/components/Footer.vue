@@ -4,7 +4,7 @@ import { SfButton, SfIconHome, SfIconMenu, SfIconAdd } from '@storefront-ui/vue'
 const items = [
   {
     label: 'Home',
-    info: 'Redirects to Products',
+    info: 'Product List',
     icon: SfIconHome,
     link: '/',
   },
@@ -28,10 +28,10 @@ const onClickHandler = (itemLink: string) => {
   useNavTo(itemLink)
 }
 
-const footerRef = ref(null)
+const footerNavRef = ref(null)
 
 const updateFooterHeight = () => {
-  const footerHeight = footerRef.value.offsetHeight
+  const footerHeight = footerNavRef.value.offsetHeight
   document.documentElement.style.setProperty('--footer-height', `${footerHeight}px`);
 }
 
@@ -46,8 +46,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <footer ref="footerRef" class="bottom-0 w-full left-0 fixed">
-    <nav class="flex flex-row items-stretch w-full">
+  <footer class="footer">
+    <hr>
+    <div class="text-center p-4">
+      &copy; 2023 <a href="https://revert.pl" title="" target="_blank" rel="noopener">Revert.pl</a>
+    </div>
+    <nav ref="footerNavRef" class="fixed bottom-0 w-full left-0 flex flex-row items-stretch">
       <SfButton v-for="item in items" :key="item.label" variant="tertiary" :class="[
         'py-1 flex flex-col h-full w-full rounded-none bg-primary-700 text-white font-bold hover:text-white hover:bg-primary-800 active:text-white active:bg-primary-900',
         { 'text-white bg-primary-900': item.link === route.path || item.link+'/' === route.path },
@@ -63,7 +67,7 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss">
-body {
+.footer {
   padding-bottom: var(--footer-height, 7rem);
 }
 </style>
