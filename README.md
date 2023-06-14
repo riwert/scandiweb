@@ -9,6 +9,7 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
 - [x] PDO for SQL
 - [x] MySQL database [import SQL from file](api/database/scandiweb.sql)
 - [x] ENV config [set .env based on .env.example](api/.env.example)
+- [x] mod_rewrite [set .htaccess RewriteBase /{api dir}}](api/.htaccess)
 
 ## 2. Produx - Nuxt.js client - [/client](client)
 - [x] Nuxt v3
