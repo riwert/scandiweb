@@ -19,15 +19,17 @@ class ProductController
         // Retrieve all products using the ProductService
         $products = $this->productService->getAllProducts();
 
+        // Collect product model exports
         $productExport = [];
         foreach ($products as $data) {
             // Create a new product instance in the right type
             $product = ProductFactory::createProduct($data);
 
-            // Return data in product export
+            // Add data from product export
             $productExport[] = $product->export();
         }
 
+        // Return all data from product exports
         return $productExport;
     }
 
@@ -39,7 +41,7 @@ class ProductController
         // Create a new product instance in the right type
         $product = ProductFactory::createProduct($data);
 
-        // Return data in product export
+        // Return data from product export
         return $product->export();
     }
 
