@@ -21,7 +21,7 @@ Mid-senior & Senior Web Developer test assignment in Scandiweb
   - [x] Vite and Nitro
 - [x] Tailwind CSS v3
 - [x] Storefront UI v2
-- [x] PWA installable app [check manifest.json](client/public/manifest.json)
+- [x] PWA installable [check manifest.json](client/public/manifest.json)
 - [x] ENV config [set .env based on .env.example](client/.env.example)
 
 ## Ad.1 SWAPI screenshot
