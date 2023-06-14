@@ -82,12 +82,8 @@ const props = defineProps({
     <header class="products__header bg-white">
       <h1 class="typography-headline-2 my-2 font-bold" v-text="title"></h1>
       <div class="products__actions my-2">
-        <SfButton type="button" @click="useNavTo('/product/new')">
-          ADD
-        </SfButton>
-        <SfButton type="submit">
-          MASS DELETE
-        </SfButton>
+        <SfButton type="button" @click="useNavTo('/product/new')">ADD</SfButton>
+        <SfButton type="submit">MASS DELETE</SfButton>
       </div>
       <div v-if="messages.success || messages.error" class="products__message my-2">
         <span v-text="messages.success" class="typography-text-sm font-medium text-positive-700"></span>
