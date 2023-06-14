@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "produx",
+  "description": "Produx - Nuxt.js client",
   "private": true,
   "scripts": {
     "build": "nuxt build",
