@@ -31,7 +31,7 @@ const onClickHandler = (itemLink: string) => {
 const footerNavRef = ref(null)
 
 const updateFooterHeight = () => {
-  const footerHeight = footerNavRef.value.offsetHeight
+  const footerHeight = footerNavRef?.value?.offsetHeight
   document.documentElement.style.setProperty('--footer-height', `${footerHeight}px`);
 }
 
