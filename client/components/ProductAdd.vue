@@ -114,9 +114,9 @@ const handleSubmit = async () => {
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Type switcher</span>
           <SfSelect :size="'lg'" id="productType" @input="resetErrors('productType')" v-model="newProduct.productType" placeholder="Choose product type" required>
-            <option>DVD</option>
-            <option>Book</option>
-            <option>Furniture</option>
+            <option value="dvd">DVD</option>
+            <option value="book">Book</option>
+            <option value="furniture">Furniture</option>
           </SfSelect>
           <span v-if="productErrors.productType" v-text="productErrors.productType" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
