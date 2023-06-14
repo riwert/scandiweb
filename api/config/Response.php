@@ -32,17 +32,24 @@ class Response
 
         http_response_code($code);
 
-        if ($type == 'json') {
-            self::json($data);
-        } else if ($type == 'xml') {
-            self::xml($data);
-        } else if ($type == 'plain') {
-            self::plain($data);
-        } else if ($type == 'csv') {
-            self::csv($data);
-        } else if ($type == 'dump') {
-            print_r($data);
+        switch ($type) {
+            case 'json':
+                self::json($data);
+                break;
+            case 'xml':
+                self::xml($data);
+                break;
+            case 'plain':
+                self::plain($data);
+                break;
+            case 'csv':
+                self::csv($data);
+                break;
+            case 'dump':
+                print_r($data);
+                break;
         }
+
         exit();
     }
 
@@ -54,9 +61,9 @@ class Response
 
     public static function xml($data)
     {
+        header('Content-Type: application/xml');
         $xml = new SimpleXMLElement('<response></response>');
         self::arrayToXml($data, $xml);
-        header('Content-Type: application/xml');
         echo $xml->asXML();
     }
 
@@ -80,6 +87,8 @@ class Response
 
     public static function csv($data)
     {
+        header('Content-Type: text/plain');
+
         // Create a temporary file handle
         $tempFile = fopen('php://temp', 'w');
 
