@@ -13,6 +13,17 @@ class ProductService
 {
     private $database;
     private $pdo;
+    private $fields = [
+        'sku',
+        'name',
+        'price',
+        'productType',
+        'size',
+        'weight',
+        'height',
+        'length',
+        'width',
+    ];
 
     public function __construct()
     {
@@ -112,7 +123,7 @@ class ProductService
             if (!isset($sku)) {
                 throw new Exception('Invalid data', 400);
             }
-            $stmt = $this->pdo->prepare('SELECT * FROM products WHERE sku=:sku LIMIT 1');
+            $stmt = $this->pdo->prepare('SELECT '.implode(',', $this->fields).' FROM products WHERE sku=:sku LIMIT 1');
             $stmt->bindValue(':sku', $sku);
             $stmt->execute();
             $product = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -184,7 +195,7 @@ class ProductService
     public function getAllProducts()
     {
         try {
-            $stmt = $this->pdo->query('SELECT * FROM products');
+            $stmt = $this->pdo->query('SELECT '.implode(',', $this->fields).' FROM products');
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $products;
