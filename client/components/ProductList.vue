@@ -73,7 +73,7 @@ const handleSubmit = async () => {
 }
 
 const props = defineProps({
-  title: Object
+  title: String
 })
 </script>
 
