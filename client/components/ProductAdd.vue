@@ -61,9 +61,20 @@ const resetErrors = (key = '') => {
   }
 }
 
+// fallback for testing when programmatically fields changed
+const triggerChangeEventForFields = () => {
+  const fields = document.querySelectorAll('input,select')
+
+  for (let i=0; i<fields?.length; i++) {
+    const changeEvent = new Event('change')
+    fields[i]?.dispatchEvent(changeEvent)
+  }
+}
+
 const handleSubmit = async () => {
   resetErrors()
   resetMessages()
+  triggerChangeEventForFields()
   const product = await addProduct()
   if (!product || !product.value) return
   if ('success' in toRaw(product.value)) {
