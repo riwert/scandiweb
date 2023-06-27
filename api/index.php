@@ -28,6 +28,16 @@ $router = new Router(getenv('BASE_PATH'));
 $productService = new ProductService();
 $productController = new ProductController($productService);
 
+$router->addRoute('GET', '/product/list', function () use ($productController) {
+    return $productController->productList();
+});
+
+$router->addRoute('GET', '/product/get', function ($params) use ($productController) {
+    // sku from url query param ?sku=
+    $sku = $params['sku'] ?? null;
+    return $productController->getProduct($sku);
+});
+
 $router->addRoute('POST', '/product/saveApi', function () use ($productController) {
     // data from body json payload
     $data = json_decode(file_get_contents('php://input'), true);
@@ -52,16 +62,6 @@ $router->addRoute('DELETE', '/product/massDelete', function ($params) use ($prod
     // overwrite if skus exists in body json payload
     if (isset($data['skus'])) $skus = $data['skus'];
     return $productController->massDeleteProduct($skus);
-});
-
-$router->addRoute('GET', '/product/get', function ($params) use ($productController) {
-    // sku from url query param ?sku=
-    $sku = $params['sku'] ?? null;
-    return $productController->getProduct($sku);
-});
-
-$router->addRoute('GET', '/product/list', function () use ($productController) {
-    return $productController->productList();
 });
 
 echo $router->handleRequest();
