@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  target: 'server',
   ssr: true,
   // experimental: {
   //   payloadExtraction: false,
@@ -30,10 +29,8 @@ export default defineNuxtConfig({
   ],
   pwa: {
     registerType: 'autoUpdate',
-    icon: false,
-    meta: false,
-    manifest: false,
     strategies: 'generateSW',
+    manifest: false,
     workbox: {
       globPatterns: ['**/*.{js,css,png,svg,ico}'],
       navigateFallback: null,
