@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
+
 const getProducts = async () => {
   try {
     const { data: products, error } = await useFetch(`${apiUrl}/product/list`)
@@ -65,6 +66,7 @@ const handleSubmit = async () => {
   if (!deleted || !deleted.value) return
   // const deletedRaw = toRaw(deleted.value)
   messages.success = deleted.value.success
+  products = []
   products = await getProducts()
 }
 
