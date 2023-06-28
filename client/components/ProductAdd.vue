@@ -125,8 +125,8 @@ const handleSubmit = async () => {
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Type switcher</span>
           <span class="relative flex flex-col rounded-md">
-            <select id="productType" @change="resetErrors('productType')" v-model="newProduct.productType" class="product__select select" placeholder="Choose product type" required>
-              <option class="text-sm bg-neutral-300 bg-neutral-300 text-sm text-base" value="" selected hidden disabled>Choose product type</option>
+            <select id="productType" @change="resetErrors('productType')" v-model="newProduct.productType" class="product__select select" required>
+              <option class="text-sm bg-neutral-300 bg-neutral-300 text-sm text-base" value="" selected disabled hidden>Choose product type</option>
               <option value="dvd">DVD</option>
               <option value="book">Book</option>
               <option value="furniture">Furniture</option>
