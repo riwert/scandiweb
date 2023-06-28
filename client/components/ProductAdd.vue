@@ -127,9 +127,9 @@ const handleSubmit = async () => {
           <span class="relative flex flex-col rounded-md">
             <select id="productType" @change="resetErrors('productType')" v-model="newProduct.productType" class="product__select select" required>
               <option class="text-sm bg-neutral-300 bg-neutral-300 text-sm text-base" value="" selected disabled hidden>Choose product type</option>
-              <option value="dvd">DVD</option>
-              <option value="book">Book</option>
-              <option value="furniture">Furniture</option>
+              <option>DVD</option>
+              <option>Book</option>
+              <option>Furniture</option>
             </select>
             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block fill-current w-6 h-6 absolute -translate-y-1 pointer-events-none top-1/3 right-4 transition easy-in-out duration-0.5 text-neutral-500" viewBox="0 0 24 24" data-testid="expand-more"><path d="M17 9.003a.998.998 0 0 0-1.41 0l-3.885 3.876L7.82 9.003a.998.998 0 0 0-1.41 1.411l4.588 4.588a1 1 0 0 0 1.414 0L17 10.414a.997.997 0 0 0 0-1.41Z"></path></svg>
           </span>
