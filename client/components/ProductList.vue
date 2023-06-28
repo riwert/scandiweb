@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { SfCheckbox } from '@storefront-ui/vue'
-
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
 const getProducts = async () => {
@@ -96,7 +94,7 @@ const props = defineProps({
 
         <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
-        <SfCheckbox type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox z-2" />
+        <input type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
 
         <ProductDetails :product="product" />
 
