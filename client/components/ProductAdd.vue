@@ -118,7 +118,7 @@ const handleSubmit = async () => {
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Type switcher</span>
-          <div class="relative flex flex-col rounded-md">
+          <span class="relative flex flex-col rounded-md">
             <select id="productType" @change="resetErrors('productType')" v-model="newProduct.productType" class="product__select select" placeholder="Choose product type" required>
               <option class="text-sm bg-neutral-300 bg-neutral-300 text-sm text-base" value="" selected hidden disabled>Choose product type</option>
               <option value="dvd">DVD</option>
@@ -126,7 +126,7 @@ const handleSubmit = async () => {
               <option value="furniture">Furniture</option>
             </select>
             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block fill-current w-6 h-6 absolute -translate-y-1 pointer-events-none top-1/3 right-4 transition easy-in-out duration-0.5 text-neutral-500" viewBox="0 0 24 24" data-testid="expand-more"><path d="M17 9.003a.998.998 0 0 0-1.41 0l-3.885 3.876L7.82 9.003a.998.998 0 0 0-1.41 1.411l4.588 4.588a1 1 0 0 0 1.414 0L17 10.414a.997.997 0 0 0 0-1.41Z"></path></svg>
-          </div>
+          </span>
           <span v-if="productErrors.productType" v-text="productErrors.productType" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
