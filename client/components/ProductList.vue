@@ -48,10 +48,8 @@ const triggerChangeEventForChecked = () => {
   const checkboxes = document.querySelectorAll('.delete-checkbox')
 
   for (let i=0; i<checkboxes?.length; i++) {
-    if (checkboxes[i]?.checked) {
-      const changeEvent = new Event('change')
-      checkboxes[i]?.dispatchEvent(changeEvent)
-    }
+    const changeEvent = new Event('change')
+    checkboxes[i]?.dispatchEvent(changeEvent)
   }
 }
 
