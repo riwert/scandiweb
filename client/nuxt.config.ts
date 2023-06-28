@@ -18,9 +18,9 @@ export default defineNuxtConfig({
       NUXT_API_URL: process.env.NUXT_API_URL || '/api',
     },
   },
-  app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
-  },
+  // app: {
+  //   pageTransition: { name: 'page', mode: 'out-in' },
+  // },
   css: [
     '~/assets/scss/styles.scss',
   ],
