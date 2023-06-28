@@ -57,7 +57,7 @@ const triggerChangeEventForChecked = () => {
 
 const handleSubmit = async () => {
   resetMessages()
-  triggerChangeEventForChecked()
+  // triggerChangeEventForChecked()
   let deleteSkus = Object.entries(deleteCheckbox)
   deleteSkus = deleteSkus.filter((checkbox) => checkbox[1])
   deleteSkus = deleteSkus.map((checkbox) => checkbox[0])
