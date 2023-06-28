@@ -45,7 +45,7 @@ const resetMessages = () => {
 
 // fallback for testing when programmatically checked checkboxes
 const triggerChangeEventForChecked = () => {
-  const checkboxes = document.querySelectorAll('.delete-checkbox')
+  const checkboxes = document.querySelectorAll('.checkbox')
 
   for (let i=0; i<checkboxes?.length; i++) {
     const changeEvent = new Event('change')
