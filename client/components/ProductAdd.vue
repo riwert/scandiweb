@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { SfSelect, SfInput } from '@storefront-ui/vue'
-
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
 const addProduct = async () => {
@@ -63,7 +61,7 @@ const resetErrors = (key = '') => {
 
 // fallback for testing when programmatically fields changed
 const triggerChangeEventForFields = () => {
-  const fields = document.querySelectorAll('input,select')
+  const fields = document.querySelectorAll('#product_form input')
 
   for (let i=0; i<fields?.length; i++) {
     const changeEvent = new Event('change')
@@ -102,59 +100,63 @@ const handleSubmit = async () => {
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">SKU</span>
-          <SfInput type="text" :size="'lg'" id="sku" @input="resetErrors('sku')" v-model="newProduct.sku" class="product__input" placeholder="SKU" required />
+          <input type="text" id="sku" @input="resetErrors('sku')" v-model="newProduct.sku" class="product__input input" placeholder="SKU" required />
           <span v-if="productErrors.sku" v-text="productErrors.sku" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Name</span>
-          <SfInput type="text" :size="'lg'" id="name" @input="resetErrors('name')" v-model="newProduct.name" class="product__input" placeholder="Name" required />
+          <input type="text" id="name" @input="resetErrors('name')" v-model="newProduct.name" class="product__input input" placeholder="Name" required />
           <span v-if="productErrors.name" v-text="productErrors.name" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Price</span>
-          <SfInput type="number" min="0" step=".01" :size="'lg'" id="price" @input="resetErrors('price')" v-model="newProduct.price" class="product__input" placeholder="Price in $" required />
+          <input type="number" min="0" step=".01" id="price" @input="resetErrors('price')" v-model="newProduct.price" class="product__input input" placeholder="Price in $" required />
           <span v-if="productErrors.price" v-text="productErrors.price" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label class="product__label w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Type switcher</span>
-          <SfSelect :size="'lg'" id="productType" @input="resetErrors('productType')" v-model="newProduct.productType" placeholder="Choose product type" required>
-            <option value="dvd">DVD</option>
-            <option value="book">Book</option>
-            <option value="furniture">Furniture</option>
-          </SfSelect>
+          <div class="relative flex flex-col rounded-md">
+            <select id="productType" @change="resetErrors('productType')" v-model="newProduct.productType" class="product__select select" placeholder="Choose product type" required>
+              <option class="text-sm bg-neutral-300 bg-neutral-300 text-sm text-base" value="" selected hidden disabled>Choose product type</option>
+              <option value="dvd">DVD</option>
+              <option value="book">Book</option>
+              <option value="furniture">Furniture</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block fill-current w-6 h-6 absolute -translate-y-1 pointer-events-none top-1/3 right-4 transition easy-in-out duration-0.5 text-neutral-500" viewBox="0 0 24 24" data-testid="expand-more"><path d="M17 9.003a.998.998 0 0 0-1.41 0l-3.885 3.876L7.82 9.003a.998.998 0 0 0-1.41 1.411l4.588 4.588a1 1 0 0 0 1.414 0L17 10.414a.997.997 0 0 0 0-1.41Z"></path></svg>
+          </div>
           <span v-if="productErrors.productType" v-text="productErrors.productType" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label v-if="newProduct.productType?.toLowerCase() == 'dvd'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Size</span>
-          <SfInput type="number" min="0" step=".01" :size="'lg'" id="size" @input="resetErrors('size')" v-model="newProduct.size" class="product__input" placeholder="Size in MB" required />
+          <input type="number" min="0" step=".01" id="size" @input="resetErrors('size')" v-model="newProduct.size" class="product__input input" placeholder="Size in MB" required />
           <span v-if="productErrors.size" v-text="productErrors.size" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label v-if="newProduct.productType?.toLowerCase() == 'book'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Weight</span>
-          <SfInput type="number" min="0" step=".01" :size="'lg'" id="weight" @input="resetErrors('weight')" v-model="newProduct.weight" class="product__input" placeholder="Weight in kg" required />
+          <input type="number" min="0" step=".01" id="weight" @input="resetErrors('weight')" v-model="newProduct.weight" class="product__input input" placeholder="Weight in kg" required />
           <span v-if="productErrors.weight" v-text="productErrors.weight" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Height</span>
-          <SfInput type="number" min="0" step=".01" :size="'lg'" id="height" @input="resetErrors('height')" v-model="newProduct.height" class="product__input" placeholder="Height in cm" required />
+          <input type="number" min="0" step=".01" id="height" @input="resetErrors('height')" v-model="newProduct.height" class="product__input input" placeholder="Height in cm" required />
           <span v-if="productErrors.height" v-text="productErrors.height" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Width</span>
-          <SfInput type="number" min="0" step=".01" :size="'lg'" id="width" @input="resetErrors('width')" v-model="newProduct.width" class="product__input" placeholder="Width in cm" required />
+          <input type="number" min="0" step=".01" id="width" @input="resetErrors('width')" v-model="newProduct.width" class="product__input input" placeholder="Width in cm" required />
           <span v-if="productErrors.width" v-text="productErrors.width" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
         <label v-if="newProduct.productType?.toLowerCase() == 'furniture'" class="w-full flex flex-col gap-0.5">
           <span class="typography-text-sm font-medium">Length</span>
-          <SfInput type="number" min="0" step=".01" :size="'lg'" id="length" @input="resetErrors('length')" v-model="newProduct.length" class="product__input" placeholder="Length in cm" required />
+          <input type="number" min="0" step=".01" id="length" @input="resetErrors('length')" v-model="newProduct.length" class="product__input input" placeholder="Length in cm" required />
           <span v-if="productErrors.length" v-text="productErrors.length" class="typography-text-sm text-negative-700 font-medium"></span>
         </label>
 
