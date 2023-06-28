@@ -9,6 +9,7 @@ const getProducts = async () => {
     return products
   } catch(e) {
     console.log(e)
+    return
   }
 }
 let products = await getProducts()
@@ -64,9 +65,7 @@ const handleSubmit = async () => {
 
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
-  // const deletedRaw = toRaw(deleted.value)
   messages.success = deleted.value.success
-  products = []
   products = await getProducts()
 }
 
