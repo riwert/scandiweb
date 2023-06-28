@@ -14,7 +14,7 @@ const getProducts = async () => {
 }
 let products = await getProducts()
 
-const deleteCheckbox = reactive({})
+const deleteCheckbox = ref([])
 
 const deleteProducts = async (toDelete) => {
   try {
@@ -46,26 +46,32 @@ const resetMessages = () => {
 }
 
 // fallback for testing when programmatically checked checkboxes
-const triggerChangeEventForChecked = () => {
-  const checkboxes = document.querySelectorAll('.checkbox')
+const getCheckedCheckboxes = () => {
+  const checkboxes = document.querySelectorAll('.delete-checkbox')
 
+  let deleteSkus = []
   for (let i=0; i<checkboxes?.length; i++) {
-    const changeEvent = new Event('change')
-    checkboxes[i]?.dispatchEvent(changeEvent)
+    if (checkboxes[i].checked) deleteSkus.push(checkboxes[i].value)
   }
+
+  return deleteSkus
 }
 
 const handleSubmit = async () => {
   resetMessages()
-  // triggerChangeEventForChecked()
-  let deleteSkus = Object.entries(deleteCheckbox)
-  deleteSkus = deleteSkus.filter((checkbox) => checkbox[1])
-  deleteSkus = deleteSkus.map((checkbox) => checkbox[0])
-  deleteSkus = deleteSkus.join(',')
+
+  let deleteSkus = ''
+  console.log(deleteCheckbox.value.length)
+  if (deleteCheckbox.value.length) {
+    deleteSkus = deleteCheckbox.value.join(',')
+  } else {
+    deleteSkus = getCheckedCheckboxes()?.join(',')
+  }
 
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
   messages.success = deleted.value.success
+
   products = await getProducts()
 }
 
@@ -93,7 +99,7 @@ const props = defineProps({
 
         <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
-        <input type="checkbox" v-model="deleteCheckbox[product.sku]" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
+        <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
 
         <ProductDetails :product="product" />
 
