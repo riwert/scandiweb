@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const withFooter = false
+
 useServerSeoMeta({
   charset: 'utf-8',
   viewport: 'width=device-width, initial-scale=1',
@@ -36,7 +38,7 @@ useHead({
 
     <NuxtPage />
 
-    <Footer />
+    <Footer v-if="withFooter" />
   </div>
 </template>
 
