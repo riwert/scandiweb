@@ -15,8 +15,8 @@ const items = [
     link: '/product/list',
   },
   {
-    label: 'Add',
-    info: 'New Product',
+    label: 'New',
+    info: 'Add Product',
     icon: SfIconAdd,
     link: '/product/new',
   },
