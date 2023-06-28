@@ -61,11 +61,17 @@ const resetErrors = (key = '') => {
 
 // fallback for testing when programmatically fields changed
 const triggerChangeEventForFields = () => {
-  const fields = document.querySelectorAll('#product_form input')
+  const inputFields = document.querySelectorAll('#product_form input')
 
-  for (let i=0; i<fields?.length; i++) {
+  for (let i=0; i<inputFields?.length; i++) {
+    const changeEvent = new Event('input')
+    inputFields[i]?.dispatchEvent(changeEvent)
+  }
+
+  const selectFields = document.querySelectorAll('#product_form select')
+  for (let i=0; i<selectFields?.length; i++) {
     const changeEvent = new Event('change')
-    fields[i]?.dispatchEvent(changeEvent)
+    selectFields[i]?.dispatchEvent(changeEvent)
   }
 }
 
