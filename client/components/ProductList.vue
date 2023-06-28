@@ -49,28 +49,27 @@ const resetMessages = () => {
 const getCheckedCheckboxes = () => {
   const checkboxes = document.querySelectorAll('.delete-checkbox')
 
-  let deleteSkus = []
+  let checkedCheckboxes = []
   for (let i=0; i<checkboxes?.length; i++) {
-    if (checkboxes[i].checked) deleteSkus.push(checkboxes[i].value)
+    if (checkboxes[i].checked) checkedCheckboxes.push(checkboxes[i].value)
   }
 
-  return deleteSkus
+  return checkedCheckboxes.join(',')
 }
 
 const handleSubmit = async () => {
   resetMessages()
 
-  let deleteSkus = ''
-  console.log(deleteCheckbox.value.length)
-  if (deleteCheckbox.value.length) {
-    deleteSkus = deleteCheckbox.value.join(',')
-  } else {
-    deleteSkus = getCheckedCheckboxes()?.join(',')
+  let deleteSkus = deleteCheckbox.value.join(',')
+
+  if (!deleteSkus.length) {
+    deleteSkus = getCheckedCheckboxes()
   }
 
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
   messages.success = deleted.value.success
+  deleteCheckbox.value = []
 
   products = await getProducts()
 }
