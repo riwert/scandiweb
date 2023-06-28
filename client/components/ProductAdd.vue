@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
 const addProduct = async () => {

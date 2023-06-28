@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { SfButton, SfIconHome, SfIconMenu, SfIconAdd } from '@storefront-ui/vue'
 
 const items = [
@@ -24,7 +24,7 @@ const items = [
 
 const route = useRoute()
 
-const onClickHandler = (itemLink: string) => {
+const onClickHandler = (itemLink) => {
   useNavTo(itemLink)
 }
 
