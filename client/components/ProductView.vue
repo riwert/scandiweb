@@ -23,7 +23,7 @@ const product = (route.query.sku) ? await getProduct(route.query.sku) : ''
 
       <div class="product__actions my-2">
         <button type="button" @click="useNavTo('/product/new')" class="btn-secondary">ADD</button>
-        <button type="submit" class="btn-primary">MASS DELETE</button>
+        <button type="button" @click="useNavTo('/product/list')" class="btn-secondary">LIST</button>
       </div>
 
     </header>
