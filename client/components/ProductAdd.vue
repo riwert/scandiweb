@@ -27,7 +27,9 @@ const addProduct = async () => {
   }
 }
 
-const newProduct = reactive({})
+const newProduct = reactive({
+  productType: ''
+})
 
 const productErrors = reactive({})
 
