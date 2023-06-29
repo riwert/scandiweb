@@ -69,9 +69,9 @@ const handleSubmit = async () => {
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
   messages.success = deleted.value.success
-  deleteCheckbox.value = []
-
+  
   products = await getProducts()
+  deleteCheckbox.value = []
 }
 
 const props = defineProps({
