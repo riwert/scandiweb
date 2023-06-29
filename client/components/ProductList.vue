@@ -54,7 +54,7 @@ const getCheckedCheckboxes = () => {
     if (checkboxes[i].checked) checkedCheckboxes.push(checkboxes[i].value)
   }
 
-  return checkedCheckboxes.join(',')
+  return checkedCheckboxes
 }
 
 const handleSubmit = async () => {
@@ -64,6 +64,7 @@ const handleSubmit = async () => {
 
   if (!deleteSkus.length) {
     deleteSkus = getCheckedCheckboxes()
+    deleteSkus = deleteSkus.join(',')
   }
 
   const deleted = await deleteProducts(deleteSkus)
