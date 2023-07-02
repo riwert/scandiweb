@@ -1,4 +1,6 @@
 <script setup>
+import { SfIconVuestorefront } from '@storefront-ui/vue'
+
 const props = defineProps(['withFooter'])
 const emit = defineEmits(['click'])
 
@@ -12,7 +14,9 @@ const toggleFooter = () => {
 
 <template>
   <div class="footer-switcher" :class="{'footer-switcher--is-on': props.withFooter}">
-    <button @click="toggleFooter" class="btn-secondary bg-white" v-text="(props.withFooter) ? 'Hide footer' : 'Show footer'"></button>
+    <button @click="toggleFooter" class="btn-secondary bg-white" :title="(props.withFooter) ? 'Hide footer' : 'Show footer'">
+      <Component :is="SfIconVuestorefront" class="icon" :class="(props.withFooter) ? 'icon--hide' : 'icon--show'" />
+    </button>
   </div>
 </template>
 
@@ -25,6 +29,10 @@ const toggleFooter = () => {
 
   &--is-on {
     bottom: 7rem;
+  }
+
+  .icon--show {
+    transform: rotate(180deg);
   }
 }
 </style>
