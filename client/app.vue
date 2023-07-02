@@ -1,5 +1,9 @@
 <script setup>
-const withFooter = false
+const withFooter = ref(false)
+
+const handleSwitch = (value) => {
+  withFooter.value = value
+}
 
 useServerSeoMeta({
   charset: 'utf-8',
@@ -37,6 +41,8 @@ useHead({
     <NuxtLoadingIndicator color="var(--primary-gradient)" />
 
     <NuxtPage />
+
+    <FooterSwitcher :with-footer="withFooter" @click="handleSwitch" />
 
     <Footer v-if="withFooter" />
   </div>
