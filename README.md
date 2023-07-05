@@ -6,7 +6,7 @@ App demo: [produx.vercel.app](https://produx.vercel.app)
 
 ## 1. SWAPI - PHP REST API - [/api](api)
 - [x] Vanilla PHP (without any framework)
-- [x] Composer packages
+- [x] Composer packages (autoload, phpdotenv)
 - [x] OOP approach
 - [x] PDO for SQL
 - [x] MySQL database [import SQL from scandiweb.sql file](api/database/scandiweb.sql)
@@ -18,16 +18,18 @@ App demo: [produx.vercel.app](https://produx.vercel.app)
   - [x] Vue v3
   - [x] Vue Router
   - [x] Vue Meta
-  - [x] TS
+  - [x] TS support
   - [x] Composition API with simple syntax & auto imports
   - [x] SPA / SSR / SSR + Hydration/ SSG as rendering options
   - [x] Vite and Nitro
+- [x] Pinia as a store for sharing a global state with persistence
 - [x] Tailwind CSS v3
 - [x] Storefront UI v2
-- [x] PWA installable [check manifest.json](client/public/manifest.json)
+- [x] PWA installable with service worker (workbox) [check manifest.json](client/public/manifest.json)
 - [x] ENV config [set new .env based on .env.example](client/.env.example)
 
 ## Ad.1 SWAPI screenshot
 [!['SWAPI example'](api/swapi-screenshot.png)](api/swapi-screenshot.png 'See SWAPI example screenshot')
+
 ## Ad.2 Produx screenshot
 [!['Produx example'](client/produx-screenshot.jpg)](client/produx-screenshot.jpg 'See Produx example screenshot')
