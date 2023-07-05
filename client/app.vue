@@ -1,5 +1,7 @@
 <script setup>
-const withFooter = false
+import { useConfigStore } from './stores/config'
+
+const config = useConfigStore()
 
 useServerSeoMeta({
   charset: 'utf-8',
@@ -38,7 +40,9 @@ useHead({
 
     <NuxtPage />
 
-    <Footer v-if="withFooter" />
+    <FooterSwitcher />
+
+    <Footer v-if="config.isFooterActive" />
   </div>
 </template>
 

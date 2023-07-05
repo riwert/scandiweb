@@ -26,7 +26,23 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@vite-pwa/nuxt',
+    '@vueuse/nuxt',
+    '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
+  piniaPersistedstate: {
+    cookieOptions: {
+      sameSite: 'strict',
+    },
+    storage: 'cookies'
+  },
   pwa: {
     registerType: 'autoUpdate',
     strategies: 'generateSW',
