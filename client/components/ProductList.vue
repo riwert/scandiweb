@@ -62,6 +62,7 @@ const handleSubmit = async () => {
 
   let deleteSkus = deleteCheckbox.value.join(',')
 
+  // fallback
   if (!deleteSkus.length) {
     deleteSkus = getCheckedCheckboxes()
     deleteSkus = deleteSkus.join(',')

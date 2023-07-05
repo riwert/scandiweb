@@ -66,8 +66,8 @@ const triggerChangeEventForFields = () => {
   const inputFields = document.querySelectorAll('#product_form input')
 
   for (let i=0; i<inputFields?.length; i++) {
-    const changeEvent = new Event('input')
-    inputFields[i]?.dispatchEvent(changeEvent)
+    const inputEvent = new Event('input')
+    inputFields[i]?.dispatchEvent(inputEvent)
   }
 
   const selectFields = document.querySelectorAll('#product_form select')

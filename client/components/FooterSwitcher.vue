@@ -1,21 +1,19 @@
 <script setup>
 import { SfIconVuestorefront } from '@storefront-ui/vue'
+import { useConfigStore } from '../stores/config'
 
-const props = defineProps(['withFooter'])
-const emit = defineEmits(['click'])
-
-// const activeFooter = localStorage?.getItem('activeFooter') || props.withFooter
+const config = useConfigStore()
+const { isFooterActive } = toRefs(config)
 
 const toggleFooter = () => {
-  // localStorage?.setItem('activeFooter', activeFooter)
-  emit('click', !props.withFooter)
+  config.setFooterActivity(!config.isFooterActive)
 }
 </script>
 
 <template>
-  <div class="footer-switcher" :class="{'footer-switcher--is-on': props.withFooter}">
-    <button @click="toggleFooter" class="btn-secondary bg-white" :title="(props.withFooter) ? 'Hide footer' : 'Show footer'">
-      <Component :is="SfIconVuestorefront" class="icon" :class="(props.withFooter) ? 'icon--hide' : 'icon--show'" />
+  <div :data-with-footer="isFooterActive" class="footer-switcher" :class="{'footer-switcher--is-on': isFooterActive}">
+    <button @click="toggleFooter" class="btn-secondary bg-white" :title="(isFooterActive) ? 'Hide footer' : 'Show footer'">
+      <Component :is="SfIconVuestorefront" class="icon" :class="(isFooterActive) ? 'icon--hide' : 'icon--show'" />
     </button>
   </div>
 </template>

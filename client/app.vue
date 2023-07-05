@@ -1,9 +1,7 @@
 <script setup>
-const withFooter = ref(false)
+import { useConfigStore } from './stores/config'
 
-const handleSwitch = (value) => {
-  withFooter.value = value
-}
+const config = useConfigStore()
 
 useServerSeoMeta({
   charset: 'utf-8',
@@ -42,9 +40,9 @@ useHead({
 
     <NuxtPage />
 
-    <FooterSwitcher :with-footer="withFooter" @click="handleSwitch" />
+    <FooterSwitcher />
 
-    <Footer v-if="withFooter" />
+    <Footer v-if="config.isFooterActive" />
   </div>
 </template>
 
