@@ -9,7 +9,7 @@ use PDOException;
 use Exception;
 use Error;
 
-class ProductService
+trait ProductService
 {
     private $database;
     private $pdo;

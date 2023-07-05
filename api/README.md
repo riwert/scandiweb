@@ -1,6 +1,6 @@
 # scandiweb/swapi
 
-**SWAPI** - a simple REST API in PHP (OOP)
+**SWAPI** - a simple REST API in vanilla PHP OOP
 
 ## Endpoints:
 - ```/product/list``` (without any param)
