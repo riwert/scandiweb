@@ -43,21 +43,21 @@ export default defineNuxtConfig({
     },
     storage: 'cookies'
   },
-  pwa: {
-    registerType: 'autoUpdate',
-    strategies: 'generateSW',
-    manifest: false,
-    workbox: {
-      globPatterns: ['**/*.{js,css,png,svg,ico}'],
-      navigateFallback: null,
-    },
-  },
-  vite: {
-    server: {
-      hmr: {
-        protocol: 'ws',
-        host: 'localhost',
-      },
-    },
-  },
+  // pwa: {
+  //   registerType: 'autoUpdate',
+  //   strategies: 'generateSW',
+  //   manifest: false,
+  //   workbox: {
+  //     globPatterns: ['**/*.{js,css,png,svg,ico}'],
+  //     navigateFallback: null,
+  //   },
+  // },
+  // vite: {
+  //   server: {
+  //     hmr: {
+  //       protocol: 'ws',
+  //       host: 'localhost',
+  //     },
+  //   },
+  // },
 })
