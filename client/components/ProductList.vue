@@ -49,7 +49,7 @@ const resetMessages = () => {
 
 // fallback for testing when programmatically checked checkboxes
 const getCheckedCheckboxes = () => {
-  const checkboxes = document.getElementsByClassName('delete-checkbox')
+  const checkboxes = document.getElementsByClassName('checkbox')
 
   let checkedCheckboxes = []
   for (let i=0; i<checkboxes?.length; i++) {
