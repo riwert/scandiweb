@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
+  ssr: false,
   // experimental: {
   //   payloadExtraction: false,
   // },
   nitro: {
-    preset: 'vercel-edge',
+    // preset: 'vercel-edge',
     // prerender: {
     //   crawlLinks: true,
     // },
@@ -45,10 +45,10 @@ export default defineNuxtConfig({
   },
   pwa: {
     registerType: 'autoUpdate',
-    strategies: 'generateSW',
+    strategies: 'injectManifest',
     manifest: false,
     workbox: {
-      globPatterns: ['**/*.{js,css,png,svg,ico}'],
+      globPatterns: ['**/*.{js,css,jpg,png,svg,ico}'],
       navigateFallback: null,
     },
   },
