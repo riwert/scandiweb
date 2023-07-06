@@ -12,7 +12,8 @@ const getProducts = async () => {
     return
   }
 }
-let products = await getProducts()
+
+const productList = ref(await getProducts() || [])
 
 const deleteCheckbox = ref([])
 
@@ -71,8 +72,9 @@ const handleSubmit = async () => {
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
   messages.success = deleted.value.success
-  
-  products = await getProducts()
+
+  productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
+  // productList.value = await getProducts() || []
   deleteCheckbox.value = []
 }
 
@@ -96,7 +98,7 @@ const props = defineProps({
     </header>
     <hr>
     <div class="products__container text-neutral-900">
-      <div v-for="product in products" :key="product.id" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
+      <div v-for="product in productList" :key="product.sku" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
 
         <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
