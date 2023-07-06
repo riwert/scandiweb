@@ -45,7 +45,7 @@ export default defineNuxtConfig({
   },
   pwa: {
     registerType: 'autoUpdate',
-    strategies: 'injectManifest',
+    strategies: 'generateSW',
     manifest: false,
     workbox: {
       globPatterns: ['**/*.{js,css,jpg,png,svg,ico}'],
