@@ -71,12 +71,12 @@ const handleSubmit = async () => {
 
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
-  messages.success = deleted.value.success
+  // messages.success = deleted.value.success
 
   productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
   // productList.value = await getProducts() || []
   deleteCheckbox.value = []
-  useNavTo('/product/list')
+  useNavTo('/')
 }
 
 const props = defineProps({
