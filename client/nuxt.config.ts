@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   // experimental: {
   //   payloadExtraction: false,
   // },
   nitro: {
-    // preset: 'vercel-edge',
+    preset: 'vercel-edge',
     // prerender: {
     //   crawlLinks: true,
     // },
