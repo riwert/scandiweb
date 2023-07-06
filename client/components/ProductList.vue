@@ -13,7 +13,8 @@ const getProducts = async () => {
   }
 }
 
-const productList = ref(await getProducts() || [])
+const fetchedProducts = await getProducts()
+const productList = ref(toRaw(fetchedProducts.value) || [])
 
 const deleteCheckbox = ref([])
 
@@ -71,12 +72,12 @@ const handleSubmit = async () => {
 
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
-  // messages.success = deleted.value.success
+  messages.success = deleted.value.success
 
   productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
-  // productList.value = await getProducts() || []
+  const reFetchedProducts = await getProducts()
+  productList.value = toRaw(reFetchedProducts.value) || []
   deleteCheckbox.value = []
-  useNavTo('/')
 }
 
 const props = defineProps({
