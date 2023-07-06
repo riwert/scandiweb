@@ -76,6 +76,7 @@ const handleSubmit = async () => {
   productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
   // productList.value = await getProducts() || []
   deleteCheckbox.value = []
+  useNavTo('/product/list')
 }
 
 const props = defineProps({
