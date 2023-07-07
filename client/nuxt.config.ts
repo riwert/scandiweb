@@ -2,9 +2,8 @@
 export default defineNuxtConfig({
   // ssr: true,
   routeRules: {
-    // Homepage pre-rendered at build time
-    '/**': { swr: true },
-    // Redirects legacy urls
+    '/': { ssr: true },
+    // SSR Redirect
     '/products': { redirect: '/product/list' }
   },
   // experimental: {
