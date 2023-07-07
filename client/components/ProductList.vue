@@ -73,8 +73,6 @@ const handleSubmit = async () => {
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
 
-  useRefreshTo('/product/list')
-
   messages.success = deleted.value.success
 
   productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
@@ -82,6 +80,12 @@ const handleSubmit = async () => {
   productList.value = toRaw(reFetchedProducts.value) || []
   deleteCheckbox.value = []
   deleteSkus = ''
+
+  // for ssr clear to pass test
+  navigateTo('/product/list', {
+    external: true
+  })
+
 }
 
 const props = defineProps({
