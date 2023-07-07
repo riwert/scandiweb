@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   // ssr: true,
   routeRules: {
-    '/**': { isr: 1 }, // set 1s revalidate in the bg
+    '/**': { isr: false },
     // SSR Redirect
     // '/products': { redirect: '/product/list' }
   },
