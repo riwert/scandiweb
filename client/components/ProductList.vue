@@ -81,10 +81,8 @@ const handleSubmit = async () => {
   deleteCheckbox.value = []
   deleteSkus = ''
 
-  // refresh for ssr clear dom to pass test
-  const router = useRouter()
-  const currentPath = router.currentRoute.value.path
-  navigateTo(currentPath, {
+  // refresh for ssr clear dom to pass the test
+  navigateTo('/', {
     reload: true
   })
 }
