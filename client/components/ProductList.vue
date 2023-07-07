@@ -81,11 +81,8 @@ const handleSubmit = async () => {
   deleteCheckbox.value = []
   deleteSkus = ''
 
-  // refresh for ssr clear dom to pass test
-  // navigateTo('https://produx.vercel.app/', {
-  //   external: true
-  // })
-  useRefreshTo('/')
+  // refresh for ssr clear dom to pass the test
+  reloadNuxtApp()
 }
 
 const props = defineProps({
