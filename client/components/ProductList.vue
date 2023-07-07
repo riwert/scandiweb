@@ -81,11 +81,12 @@ const handleSubmit = async () => {
   deleteCheckbox.value = []
   deleteSkus = ''
 
-  // for ssr clear to pass test
-  navigateTo('/product/list', {
+  // refresh for ssr clear dom to pass test
+  const router = useRouter()
+  const currentPath = router.currentRoute.value.path
+  navigateTo(currentPath, {
     external: true
   })
-
 }
 
 const props = defineProps({
