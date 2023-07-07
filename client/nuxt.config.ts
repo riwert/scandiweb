@@ -4,13 +4,13 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { ssr: true },
     // SSR Redirect
-    // '/products': { redirect: '/product/list' }
+    '/products': { redirect: '/product/list' }
   },
   // experimental: {
   //   payloadExtraction: false,
   // },
   nitro: {
-    // preset: 'vercel-edge',
+    preset: 'vercel-edge',
     // prerender: {
     //   crawlLinks: true,
     // },
