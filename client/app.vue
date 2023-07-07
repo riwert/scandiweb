@@ -39,6 +39,10 @@ useHead({
     <NuxtLoadingIndicator color="var(--primary-gradient)" />
 
     <NuxtPage />
+
+    <FooterSwitcher />
+
+    <Footer v-if="config.isFooterActive" />
   </div>
 </template>
 

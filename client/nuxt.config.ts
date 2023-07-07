@@ -1,11 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // ssr: true,
-  routeRules: {
-    '/': { ssr: true },
-    // SSR Redirect
-    '/products': { redirect: '/product/list' }
-  },
+  ssr: true,
   // experimental: {
   //   payloadExtraction: false,
   // },
