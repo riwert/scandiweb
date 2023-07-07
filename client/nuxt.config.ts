@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  // ssr: true,
+  routeRules: {
+    // Homepage pre-rendered at build time
+    '/**': { swr: true },
+    // Redirects legacy urls
+    '/products': { redirect: '/product/list' }
+  },
   // experimental: {
   //   payloadExtraction: false,
   // },
