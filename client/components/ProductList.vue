@@ -86,8 +86,8 @@ const handleSubmit = async () => {
   //   external: true
   // })
 
-  const nuxtApp = useNuxtApp()
-  nuxtApp.$router.replace('/products')
+  // const nuxtApp = useNuxtApp()
+  // nuxtApp.$router.replace('/products')
 
   // refreshNuxtData()
   // reloadNuxtApp({
@@ -119,7 +119,9 @@ const props = defineProps({
 
         <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
-        <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
+        <client-only>
+          <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
+        </client-only>
 
         <ProductDetails :product="product" />
 
