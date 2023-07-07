@@ -79,6 +79,7 @@ const handleSubmit = async () => {
   productList.value = toRaw(reFetchedProducts.value) || []
   deleteCheckbox.value = []
   deleteSkus = ''
+  location.reload()
 }
 
 const props = defineProps({
