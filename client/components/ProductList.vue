@@ -82,9 +82,10 @@ const handleSubmit = async () => {
   deleteSkus = ''
 
   // refresh for ssr clear dom to pass test
-  navigateTo('https://produx.vercel.app/', {
-    external: true
-  })
+  // navigateTo('https://produx.vercel.app/', {
+  //   external: true
+  // })
+  useRefreshTo('/')
 }
 
 const props = defineProps({

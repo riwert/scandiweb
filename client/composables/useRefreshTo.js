@@ -1,4 +1,4 @@
-export const useRefreshTo = (destination) => {
+export const useRefreshTo = async (destination) => {
   const router = useRouter()
-  return router.push('/').then(() => router.replace(destination))
+  return router.replace(destination)
 }
