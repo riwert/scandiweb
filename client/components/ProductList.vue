@@ -101,19 +101,19 @@ const props = defineProps({
       </div>
     </header>
     <hr>
-      <div class="products__container text-neutral-900">
-        <div v-for="product in productList" :key="product.sku" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
+    <div class="products__container text-neutral-900">
+      <div v-for="product in productList" :key="product.sku" class="products__item bg-white border border-1 border-neutral-200 rounded-md hover:shadow-lg w-[300px] p-4">
 
-          <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
+        <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
-          <client-only>
-            <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
-          </client-only>
+        <client-only>
+          <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
+        </client-only>
 
-          <ProductDetails :product="product" />
+        <ProductDetails :product="product" />
 
-        </div>
       </div>
+    </div>
   </form>
 </template>
 
