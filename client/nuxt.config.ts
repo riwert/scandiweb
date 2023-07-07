@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   //   payloadExtraction: false,
   // },
   nitro: {
-    preset: 'vercel-edge',
+    // preset: 'vercel-edge',
     // prerender: {
     //   crawlLinks: true,
     // },
