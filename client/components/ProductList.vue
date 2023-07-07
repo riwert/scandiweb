@@ -84,7 +84,7 @@ const handleSubmit = async () => {
   const router = useRouter()
   const currentUrl = router.currentRoute.value.path
   setTimeout(() => {
-    navigateTo(currentUrl == '/' ? '/product/list' : '/' , {
+    return navigateTo(currentUrl == '/' ? '/product/list' : '/' , {
       replace: true
     })
   }, 1500)
