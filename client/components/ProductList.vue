@@ -83,8 +83,8 @@ const handleSubmit = async () => {
 
   const route = useRoute()
   const currentUrl = route.fullPath
-  setTimeout(async () => {
-    await navigateTo(currentUrl, {
+  setTimeout(() => {
+    return navigateTo(currentUrl, {
       external: true
     })
   }, 1500)
