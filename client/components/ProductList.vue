@@ -85,7 +85,7 @@ const handleSubmit = async () => {
   const router = useRouter()
   const currentPath = router.currentRoute.value.path
   navigateTo(currentPath, {
-    external: true
+    reload: true
   })
 }
 
