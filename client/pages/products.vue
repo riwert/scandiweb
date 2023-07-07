@@ -1,1 +1,5 @@
-<template></template>
+<script setup>
+definePageMeta({
+  middleware: 'redirects',
+})
+</script>
