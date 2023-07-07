@@ -81,11 +81,10 @@ const handleSubmit = async () => {
   deleteCheckbox.value = []
   deleteSkus = ''
 
-  const appUrl = config.public.NUXT_APP_URL
-  const route = useRoute()
-  const currentFullUrl = appUrl + route.fullPath
+  const router = useRouter()
+  const currentUrl = router.currentRoute.value.path
   setTimeout(() => {
-    return navigateTo(currentFullUrl, {
+    navigateTo(currentUrl, {
       external: true
     })
   }, 1500)

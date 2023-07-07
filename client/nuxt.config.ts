@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     NODE_ENV: process.env.NODE_ENV,
     public: {
       NUXT_API_URL: process.env.NUXT_API_URL || '/api',
-      NUXT_APP_URL: process.env.NUXT_APP_URL || 'http://localhost:3000',
     },
   },
   // app: {
