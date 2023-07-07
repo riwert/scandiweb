@@ -87,7 +87,7 @@ const handleSubmit = async () => {
   // })
 
   const nuxtApp = useNuxtApp()
-  console.log(nuxtApp.$router.replace('/'))
+  nuxtApp.$router.replace('/products')
 
   // refreshNuxtData()
   // reloadNuxtApp({
