@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
+  // ssr: true,
+  routeRules: {
+    '/**': { ssr: true },
+    // SSR Redirect
+    '/products': { redirect: '/product/list' }
+  },
   // experimental: {
   //   payloadExtraction: false,
   // },
@@ -48,7 +53,7 @@ export default defineNuxtConfig({
     strategies: 'generateSW',
     manifest: false,
     workbox: {
-      globPatterns: ['**/*.{js,css,png,svg,ico}'],
+      globPatterns: ['**/*.{js,css,jpg,png,svg,ico}'],
       navigateFallback: null,
     },
   },

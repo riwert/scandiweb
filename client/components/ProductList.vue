@@ -49,7 +49,7 @@ const resetMessages = () => {
 
 // fallback for testing when programmatically checked checkboxes
 const getCheckedCheckboxes = () => {
-  const checkboxes = document.querySelectorAll('.delete-checkbox')
+  const checkboxes = document.getElementsByClassName('products__checkbox')
 
   let checkedCheckboxes = []
   for (let i=0; i<checkboxes?.length; i++) {
@@ -72,12 +72,14 @@ const handleSubmit = async () => {
 
   const deleted = await deleteProducts(deleteSkus)
   if (!deleted || !deleted.value) return
+
   messages.success = deleted.value.success
 
   productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
   const reFetchedProducts = await getProducts()
   productList.value = toRaw(reFetchedProducts.value) || []
   deleteCheckbox.value = []
+  deleteSkus = ''
 }
 
 const props = defineProps({
@@ -104,7 +106,9 @@ const props = defineProps({
 
         <NuxtLink :to="'/product/get?sku='+product.sku" class="absolute inset-0 z-1" :aria-label="product.name+' for $'+product.price"></NuxtLink>
 
-        <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
+        <client-only>
+          <input type="checkbox" v-model="deleteCheckbox" :value="product.sku" title="Select for MASS DELETE" class="products__checkbox delete-checkbox checkbox z-2" />
+        </client-only>
 
         <ProductDetails :product="product" />
 
