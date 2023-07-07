@@ -82,7 +82,7 @@ const handleSubmit = async () => {
   deleteSkus = ''
 
   // refresh for ssr clear dom to pass the test
-  navigateTo('/products', {
+  navigateTo('/', {
     reload: true
   })
 }

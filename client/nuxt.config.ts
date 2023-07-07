@@ -1,9 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: true,
+  // ssr: true,
   routeRules: {
+    '/**': { isr: 1 }, // set 1s revalidate in the bg
     // SSR Redirect
-    '/products': { redirect: '/product/list' }
+    // '/products': { redirect: '/product/list' }
   },
   // experimental: {
   //   payloadExtraction: false,
