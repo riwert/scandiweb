@@ -82,9 +82,12 @@ const handleSubmit = async () => {
   deleteSkus = ''
 
   // refresh for ssr clear dom to pass the test
-  navigateTo('https://produx.vercel.app/products', {
-    external: true
-  })
+  // navigateTo('https://produx.vercel.app/products', {
+  //   external: true
+  // })
+
+  const nuxtApp = useNuxtApp()
+  console.log(nuxtApp.$router.replace('/'))
 
   // refreshNuxtData()
   // reloadNuxtApp({
