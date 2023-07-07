@@ -81,8 +81,8 @@ const handleSubmit = async () => {
   deleteCheckbox.value = []
   deleteSkus = ''
 
-  // refresh for ssr clear dom to pass the test
-  navigateTo('/', {
+  // refresh for ssr clear dom to pass test
+  await navigateTo('/', {
     reload: true
   })
 }
