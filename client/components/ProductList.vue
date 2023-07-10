@@ -80,6 +80,12 @@ const handleSubmit = async () => {
   productList.value = toRaw(reFetchedProducts.value) || []
   deleteCheckbox.value = []
   deleteSkus = ''
+
+  const url = useRequestURL()
+  await navigateTo(url.href , {
+    external: true,
+    replace: true,
+  })
 }
 
 const props = defineProps({
