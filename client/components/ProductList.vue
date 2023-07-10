@@ -81,10 +81,10 @@ const handleSubmit = async () => {
   deleteCheckbox.value = []
   deleteSkus = ''
 
-  const router = useRouter()
-  const currentUrl = router.currentRoute.value.path
-  await navigateTo(currentUrl == '/' ? '/product/list' : '/' , {
-    replace: true
+  const url = useRequestURL()
+  console.log(url.href)
+  await navigateTo(url.href , {
+    external: true
   })
 }
 
