@@ -82,9 +82,9 @@ const handleSubmit = async () => {
   deleteSkus = ''
 
   const url = useRequestURL()
-  console.log(url.href)
   await navigateTo(url.href , {
-    external: true
+    external: true,
+    replace: true,
   })
 }
 
