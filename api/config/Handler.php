@@ -10,7 +10,7 @@ class Handler
     public static function handleException(Throwable $exception): string
     {
         // Create an array with the exception details
-        $error = [
+        $exception = [
             'type' => 'exception',
             'code' => $exception->getCode(),
             'error' => $exception->getMessage(),
@@ -18,7 +18,7 @@ class Handler
             'line' => $exception->getLine()
         ];
         // Return the JSON response with appropriate HTTP status code
-        return Response::handle($error, 500);
+        return Response::handle($exception, 500);
     }
 
     public static function handleError($errno, $errstr, $errfile, $errline): string
