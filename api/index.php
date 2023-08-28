@@ -5,9 +5,9 @@ require __DIR__.'/vendor/autoload.php';
 use SWAPI\config\Router;
 use SWAPI\controller\ProductController;
 
-// Set custom exception and error handlers
-set_exception_handler('SWAPI\config\Handler::handleException');
+// Set custom error and exception handlers
 set_error_handler('SWAPI\config\Handler::handleError');
+set_exception_handler('SWAPI\config\Handler::handleException');
 
 // Load ENV read lib
 (Dotenv\Dotenv::createUnsafeImmutable(__DIR__))->load();
