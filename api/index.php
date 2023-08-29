@@ -3,21 +3,11 @@
 require __DIR__.'/vendor/autoload.php';
 
 use SWAPI\config\Router;
-use SWAPI\config\Response;
 use SWAPI\controller\ProductController;
 
-// Set the custom error handler
-set_error_handler(function ($errno, $errstr, $errfile, $errline) {
-    // Create an array with the error details
-    $error = [
-        'type' => 'error',
-        'error' => $errstr,
-        'file' => $errfile,
-        'line' => $errline
-    ];
-    // Return the JSON response with appropriate HTTP status code
-    return Response::handle($error, 500);
-});
+// Set custom error and exception handlers
+set_error_handler('SWAPI\config\Handler::handleError');
+set_exception_handler('SWAPI\config\Handler::handleException');
 
 // Load ENV read lib
 (Dotenv\Dotenv::createUnsafeImmutable(__DIR__))->load();
