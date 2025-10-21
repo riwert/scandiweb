@@ -4,6 +4,8 @@ const apiUrl = config.public.NUXT_API_URL
 const getProduct = async (sku) => {
   try {
     const { data: product, error } = await useFetch(`${apiUrl}/product/get?sku=${sku}`)
+    if (error.value?.error) messages.error = error.value.error
+    if (error.value?.data?.error) messages.error = error.value.data.error
     if (error.value) throw new Error(error.value)
     return product
   } catch (e) {

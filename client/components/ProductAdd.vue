@@ -7,15 +7,13 @@ const addProduct = async () => {
       method: 'POST',
       body: JSON.stringify(newProduct)
     })
-    if (error.value?.data?.error) messages.error = error.value.data.error
     if (error.value?.error) messages.error = error.value.error
-    if (error.value) {
-      if (error.value.data?.errors) {
-        const errors = error.value.data.errors
-        Object.keys(errors).forEach((key) => {
-          productErrors[key] = errors[key]
-        })
-      }
+    if (error.value?.data?.error) messages.error = error.value.data.error
+    if (error.value?.data?.errors) {
+      const errors = error.value.data.errors
+      Object.keys(errors).forEach((key) => {
+        productErrors[key] = errors[key]
+      })
     }
     if (error.value) throw new Error(error.value)
     return product
