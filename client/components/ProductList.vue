@@ -5,6 +5,8 @@ const apiUrl = config.public.NUXT_API_URL
 const getProducts = async () => {
   try {
     const { data: products, error } = await useFetch(`${apiUrl}/product/list`)
+    if (error.value?.data?.error) messages.error = error.value.data.error
+    if (error.value?.error) messages.error = error.value.error
     if (error.value) throw new Error(error.value)
     return products
   } catch(e) {
@@ -24,13 +26,9 @@ const deleteProducts = async (toDelete) => {
       method: 'DELETE',
       body: JSON.stringify({"skus": toDelete})
     })
-    if (error.value) {
-      if (error.value.data?.error) {
-        messages.error = error.value.data.error
-      }
-
-      throw new Error(error.value)
-    }
+    if (error.value?.data?.error) messages.error = error.value.data.error
+    if (error.value?.error) messages.error = error.value.error
+    if (error.value) throw new Error(error.value)
     return product
   } catch(e) {
     console.log(e)
@@ -75,7 +73,7 @@ const handleSubmit = async () => {
 
   messages.success = deleted.value.success
 
-  productList.value = productList.value.filter((product) => !deleteSkus.includes(product.sku))
+  productList.value = (productList.value ?? []).filter((product) => !deleteSkus.includes(product.sku))
   const reFetchedProducts = await getProducts()
   productList.value = toRaw(reFetchedProducts.value) || []
   deleteCheckbox.value = []
