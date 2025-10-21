@@ -60,6 +60,7 @@ trait ProductService
                 return Response::handle(['error' => 'No product added'], 400);
             }
         } catch (PDOException | Exception | Error $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -88,6 +89,7 @@ trait ProductService
                 return Response::handle(['error' => 'No product added'], 400);
             }
         } catch (PDOException | Exception | Error $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -118,6 +120,7 @@ trait ProductService
                 return Response::handle(['error' => 'No product added'], 400);
             }
         } catch (PDOException | Exception | Error $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -135,6 +138,7 @@ trait ProductService
 
             return $product;
         } catch (PDOException | Exception | Error $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -155,6 +159,7 @@ trait ProductService
                 return Response::handle(['error' => 'No product deleted'], 400);
             }
         } catch (PDOException | Exception | Error $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
@@ -207,6 +212,7 @@ trait ProductService
 
             return $products;
         } catch (PDOException $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
