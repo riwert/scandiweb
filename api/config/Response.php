@@ -26,7 +26,7 @@ class Response
     {
         self::cors();
 
-        if (!is_numeric($code)) {
+        if (!is_numeric($code) || $code > 599) {
             $code = 500;
         }
 
