@@ -31,6 +31,7 @@ trait ProductService
             $this->database = Database::getInstance();
             $this->pdo = $this->database->getConnection();
         } catch (PDOException | Exception | Error $e) {
+            http_response_code(500);
             return Response::handle(['error' => $e->getMessage()], $e->getCode());
         }
     }
