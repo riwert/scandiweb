@@ -2,39 +2,6 @@
 const config = useRuntimeConfig()
 const apiUrl = config.public.NUXT_API_URL
 
-const getProducts = async () => {
-  try {
-    const { data: products, error } = await useFetch(`${apiUrl}/product/list`)
-    if (error.value?.error) messages.error = error.value.error
-    if (error.value?.data?.error) messages.error = error.value.data.error
-    if (error.value) throw new Error(error.value)
-    return products
-  } catch(e) {
-    console.log(e)
-    return
-  }
-}
-
-const fetchedProducts = await getProducts()
-const productList = ref(toRaw(fetchedProducts.value) || [])
-
-const deleteCheckbox = ref([])
-
-const deleteProducts = async (toDelete) => {
-  try {
-    const { data: product, error } = await useFetch(`${apiUrl}/product/massDelete?skus=${toDelete}`, {
-      method: 'DELETE',
-      body: JSON.stringify({"skus": toDelete})
-    })
-    if (error.value?.error) messages.error = error.value.error
-    if (error.value?.data?.error) messages.error = error.value.data.error
-    if (error.value) throw new Error(error.value)
-    return product
-  } catch(e) {
-    console.log(e)
-  }
-}
-
 const messages = reactive({
   success: '',
   error: '',
@@ -45,15 +12,59 @@ const resetMessages = () => {
   messages.error = ''
 }
 
+const getProducts = async () => {
+  try {
+    const { data: products, error } = await useFetch(`${apiUrl}/product/list`)
+
+    if (error.value) {
+      const errMsg = error.value?.data?.error || error.value?.error || 'Błąd pobierania produktów.'
+      messages.error = errMsg
+      console.error('getProducts error:', errMsg)
+      return ref([])
+    }
+
+    return products
+  } catch (e) {
+    console.error('getProducts exception:', e)
+    messages.error = 'Nie udało się połączyć z API.'
+    return ref([])
+  }
+}
+
+const fetchedProducts = await getProducts()
+const productList = ref(fetchedProducts.value || [])
+
+const deleteCheckbox = ref([])
+
+const deleteProducts = async (toDelete) => {
+  try {
+    const { data: product, error } = await useFetch(`${apiUrl}/product/massDelete?skus=${toDelete}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ skus: toDelete })
+    })
+
+    if (error.value) {
+      const errMsg = error.value?.data?.error || error.value?.error || 'Błąd podczas usuwania produktów.'
+      messages.error = errMsg
+      console.error('deleteProducts error:', errMsg)
+      return ref(null)
+    }
+
+    return product
+  } catch (e) {
+    console.error('deleteProducts exception:', e)
+    messages.error = 'Nie udało się połączyć z API.'
+    return ref(null)
+  }
+}
+
 // fallback for testing when programmatically checked checkboxes
 const getCheckedCheckboxes = () => {
-  const checkboxes = document.getElementsByClassName('products__checkbox')
-
-  let checkedCheckboxes = []
-  for (let i=0; i<checkboxes?.length; i++) {
-    if (checkboxes[i].checked) checkedCheckboxes.push(checkboxes[i].value)
+  const allCheckboxes = document.getElementsByClassName('products__checkbox')
+  const checkedCheckboxes = []
+  for (let i = 0; i < allCheckboxes.length; i++) {
+    if (allCheckboxes[i].checked) checkedCheckboxes.push(allCheckboxes[i].value)
   }
-
   return checkedCheckboxes
 }
 
@@ -64,23 +75,30 @@ const handleSubmit = async () => {
 
   // fallback
   if (!deleteSkus.length) {
-    deleteSkus = getCheckedCheckboxes()
-    deleteSkus = deleteSkus.join(',')
+    deleteSkus = getCheckedCheckboxes().join(',')
+  }
+
+  if (!deleteSkus.length) {
+    messages.error = 'Nie wybrano żadnych produktów do usunięcia.'
+    return
   }
 
   const deleted = await deleteProducts(deleteSkus)
-  if (!deleted || !deleted.value) return
+  if (!deleted?.value) return
 
-  messages.success = deleted.value.success
+  messages.success = deleted.value?.success || 'Usunięto produkty.'
 
-  productList.value = (productList.value ?? []).filter((product) => !deleteSkus.includes(product.sku))
+  // Odśwież listę produktów
   const reFetchedProducts = await getProducts()
-  productList.value = toRaw(reFetchedProducts.value) || []
+  productList.value = reFetchedProducts.value || []
+
+  // Reset zaznaczeń
   deleteCheckbox.value = []
   deleteSkus = ''
 
+  // Odśwież widok
   const url = useRequestURL()
-  await navigateTo(url.href , {
+  await navigateTo(url.href, {
     external: true,
     replace: true,
   })
