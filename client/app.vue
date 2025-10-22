@@ -1,8 +1,4 @@
 <script setup>
-import { useConfigStore } from './stores/config'
-
-const config = useConfigStore()
-
 useServerSeoMeta({
   charset: 'utf-8',
   viewport: 'width=device-width, initial-scale=1',
@@ -42,7 +38,7 @@ useHead({
 
     <FooterSwitcher />
 
-    <Footer v-if="config.isFooterActive" />
+    <Footer />
   </div>
 </template>
 
