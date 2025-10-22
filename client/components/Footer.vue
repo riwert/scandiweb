@@ -1,6 +1,6 @@
 <script setup>
 import { SfButton, SfIconHome, SfIconMenu, SfIconAdd } from '@storefront-ui/vue'
-import { useConfigStore } from './stores/config'
+import { useConfigStore } from '../stores/config'
 
 const config = useConfigStore()
 
