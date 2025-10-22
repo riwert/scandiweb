@@ -1,4 +1,4 @@
-# Scandiweb Products
+# Produx (Nuxt.js + vanilla OOP PHP API)
 
 Mid-senior & Senior Web Developer test assignment in Scandiweb.
 
