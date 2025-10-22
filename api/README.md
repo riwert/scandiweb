@@ -1,4 +1,4 @@
-# scandiweb/swapi
+# produx/swapi
 
 **SWAPI** - a simple REST API in vanilla PHP OOP
 

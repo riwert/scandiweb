@@ -1,7 +1,7 @@
 {
-  "name": "Scandiweb Products",
-  "short_name": "SW Products",
-  "description": "Mid-senior & Senior Web Developer test assignment in Scandiweb",
+  "name": "Produx",
+  "short_name": "Produx",
+  "description": "Vanilla PHP OOP API + Nuxt.js v3 client with PWA.",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

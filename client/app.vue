@@ -8,9 +8,9 @@ useHead({
   htmlAttrs: {
     lang: 'en',
   },
-  title: 'Scandiweb Products',
+  title: 'Produx',
   meta: [
-    { name: 'description', content: 'Mid-senior & Senior Web Developer test assignment in Scandiweb' },
+    { name: 'description', content: 'Vanilla PHP OOP API + Nuxt.js v3 client with PWA.' },
     { name: 'author', content: 'revert@revert.pl' },
     { name: 'theme-color', content: '#dd4746' },
   ],

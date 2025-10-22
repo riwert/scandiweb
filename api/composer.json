@@ -1,6 +1,6 @@
 {
-    "name": "scandiweb/swapi",
-    "description": "SWAPI - a simple PHP REST API for Scandiweb",
+    "name": "produx/swapi",
+    "description": "SWAPI - a simple PHP REST API for produx",
     "authors": [
         {
             "name": "Riwert",
